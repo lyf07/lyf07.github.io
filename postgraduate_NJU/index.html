@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="NJU ✗ 青协">
+    
+    <title>
+        
+            保研本校 |
+        
+        NJUCS · Volunteers
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.png">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"njucs.top","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"/images/logo.png","favicon":"/images/logo.png","avatar":"/images/logo.png","font_size":null,"font_family":null,"hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"Computer science is no more about computers than astronomy is about telescopes.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":true}},"local_search":{"enable":true,"preload":true},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":true,"use":"valine","valine":{"appid":"gccMsw283QpALKFpPBF9f2cm-gzGzoHsz","appkey":"rdFRAPnJTB4qEix3lrgHYq7c","server_urls":null,"placeholder":"Please comment here ..."},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["计科打工人"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"center","copyright_info":true},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"version":"3.8.6"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               NJUCS · Volunteers
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+
+                
+
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+
+        <div class="article-content-container border-box">
+
+            
+
+            <div class="article-content-bottom border-box">
+                
+                    <div class="article-title">
+                        保研本校
+                    </div>
+                
+
+                
+                    <div class="article-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/logo.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author">
+                                <span class="name">NJU ✗ 青协</span>
+                                
+                                    <span class="author-label">计科打工人</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="article-meta-info-container border-box post">
+    <div class="article-meta-info border-box">
+        
+
+
+        
+            <span class="meta-info-item article-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2023-03-08 13:16:21</span>
+                <span class="mobile">2023-03-08 13:16</span>
+            </span>
+
+            <span class="meta-info-item article-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Mon Nov 13 2023 22:58:56 GMT+0800">2023-11-13 22:58:56</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item article-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="article-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E4%BF%9D%E7%A0%94/">保研</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="article-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="article-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E4%BF%9D%E7%A0%94/">保研</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%BC%80%E6%94%BE%E6%97%A5/">开放日</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%A4%8F%E4%BB%A4%E8%90%A5/">夏令营</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E4%BF%9D%E7%A0%94%E6%9C%AC%E6%A0%A1/">保研本校</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item article-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.1k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item article-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>7 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item article-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="article-content keep-markdown-body">
+                    
+
+                    <p>如果要推免到本校，那么你需要参加每年七月份举办的“本科生开放日”活动，内容包括</p>
+<ol>
+<li>各个研究组的宣讲</li>
+<li>笔试</li>
+<li>面试</li>
+<li>（机试）（从疫情以来，机试就被暂时取消了）</li>
+</ol>
+<p>以上这几个过程，本校外校应该是同时参加的，并且排名应该是不区分本校外校的（根据2019级情况推断），会按照排名先后和你报名开放日的志愿，来分批发放“优营”。</p>
+<span id="more"></span>
+
+<h4 id="谁可以参加？"><a href="#谁可以参加？" class="headerlink" title="谁可以参加？"></a>谁可以参加？</h4><p>学位学分绩在前70%的同学都可以参加开放日，而保研名额大概只有30%，那是不是意味着学位学分前70%只要开放日成绩高就都能保上呢？</p>
+<p>不是这样的，我们说过，推免分为推荐和接收，获得推荐资格的同学需要推免课程学分绩排名在前30%-40%左右，而学位课程前70%是推荐的最低门槛。也就是说，<strong>只有你的学位课程必须在前70%，并且推免学分绩在前百分之三四十才能够获得最终的推荐的名额</strong>。而建议前70%都参加开放日，是因为前面会有同学因为不接受直博或者打算出国、工作而放弃了推免名额，从而顺延到推免学分绩靠后的同学。</p>
+<p>有的同学也会问：如果我的学分绩在50%-70%之间，是不是获得推免名额的机会就很渺茫了？那我还要不要参加开放日？</p>
+<p>即使觉得自己不太有可能获得推免名额，也建议去参加一下，如果运气好顺延到了推免名额，你还没参加开放日，那岂不是亏大了？</p>
+<h4 id="学硕专硕直博"><a href="#学硕专硕直博" class="headerlink" title="学硕专硕直博"></a>学硕专硕直博</h4><p>众做周知，保研类型完全由开放日成绩决定，这个政策是从17级开始的。也就是说，即使你绩点再高，开放日表现很差，也拿不到硕士名额，只能联系导师直博；即使你位于保研边缘，如果你开放日表现很好，那么也可能获得学硕名额。所以，绩点高的同学不要掉以轻心，绩点不高的同学也不用提前泄气。</p>
+<h4 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h4><p>开放日的前半段会有个笔试，就是一些选择题，笔试的形式不固定。</p>
+<p>从2019级推免来看，我们的笔试内容是60分钟做80多道选择题，内容几乎涵盖大学课程的全部，主要是计算机体系结构（ICS）、数据结构、算法、操作系统、计网、程序设计、Linux的一些工具等等。难度其实还不是很小的，最关键是时间紧，加上n年没复习都忘记了……（反正我一大半都是蒙的）</p>
+<p>2018级推免的笔试是60分钟做20多道选择题，内容还是上面这些。不过通过对比来看，19级的笔试难度和题量要高于18级。</p>
+<p>至于笔试算不算到开放日总成绩中，我们不得而知，但是根据今年的录取情况，我们猜测是算进去的。（只是猜测）</p>
+<h4 id="面试"><a href="#面试" class="headerlink" title="面试"></a>面试</h4><p>一般是3-4个老师轮流提问，每人问1-2个问题。</p>
+<p>面试环节，一般分为下面几个部分：</p>
+<ol>
+<li>英文自我介绍：这个部分在2019级被取消了，之前是一直有的，所以大多数同学是要先准备一个一分钟多的自我介绍并且背下来，但是有时候老师知道你是背的，所以可能直接跳过这个部分。</li>
+<li>英文问题：老师会问你1-2个英文问题（老师可能用英文提问或者直接用中文提问让你用英文回答）。范围不限，难度不一定。举几个例子：Please introduce calculus in English. 请你用英文介绍一下信号量。请你介绍一下你最喜欢的课程。</li>
+<li>中文问题：大概3-4个，一般是专业课知识，具体内容得看老师熟悉哪个方向。比如OS老师喜欢问OS，算法老师喜欢问算法，理论组老师可能会问数学问题。</li>
+<li>思想品德问题：大概1个，比如：如果你作为组长，组员认为你分配的任务不合理怎么办？</li>
+</ol>
+<p>全程大概8-10分钟，时间还是比较紧的，毕竟参加的人太多，一个人不会给太多时间。</p>
+<h4 id="问答Q-A"><a href="#问答Q-A" class="headerlink" title="问答Q&A"></a>问答Q&amp;A</h4><p>在下面我可能会反复强调一些概念，目的是不要弄混这些概念！！！</p>
+<h5 id="QA1"><a href="#QA1" class="headerlink" title="QA1"></a>QA1</h5><p>Q1: 推免名额、推免指标、推免资格……这些都是啥呀？</p>
+<p>A1:</p>
+<p>首先，推免资格一般是指年级学位学分绩前70%，这是推免的最低要求，也就是说，达到这个要求不一定能成功推免，但是没达到一定不能推免！</p>
+<p>其次，在拥有推免资格之后，你符合当年推免政策（我们常说的就是推免课程学分绩在前百分之30-50%，具体根据学校分多少名额来决定），这样你就有了推免名额。推免名额需要在保研大会上当场确定，保研大会大概会在九月中旬，会从第一名开始挨个问：“你是否要推免名额？”如果第一名回答：“我要推免名额”那么，剩余推免名额就少一个；接着是第二名……其中会有人放弃推免，就回答不要。这样会顺延到后面，从2019级计算机系来看，六七十名左右有很多人放弃保研，以至于推免名额顺延到110名左右（大班一共189人）。</p>
+<p>而推免指标，你可以理解成推免名额……（存疑，因为这个不是很官方的说法）</p>
+<p>获得推免名额之后，你就相当于被学校推荐作为研究生（也就是”推荐-接收“中的推荐部分，只要有学校收留你，你就保研成功了）。</p>
+<h5 id="QA2"><a href="#QA2" class="headerlink" title="QA2"></a>QA2</h5><p>Q2: 我推免课程学分绩比较差，没拿到推免名额（比如19级的110名开外），但是有推免资格（学位课程），那我还有机会保研吗？</p>
+<p>A2: </p>
+<p>准确的说，从19级之前，大概率是没有这种可能的。而从19级开始，这样确实也有可能保研。</p>
+<p>19级新增了工程硕博的这个概念，实际上就是学校和一些企业合作（大部分是国企），在学校呆一段时间，然后大部分时间都去这个企业实习。以往是从已经录取的研究生里面进行选拔，而19级是从推免生中选拔，而且把条<strong>件放宽到有推免资格就可以报名面试，通过面试学校会为你增加推免名额</strong>！所以对于没拿到名额的人，这是莫大的机会！</p>
+<p>但是，一切获益都是有代价的。这个可能会签一个定向协议，就是说你可能必须毕业后去这个企业工作，如果企业不要你，企业会把你推荐到下一层的企业。（具体情况，等录取之后，我们会找一些在这个专项计划的学长学姐来写一下！）</p>
+<h5 id="QA3"><a href="#QA3" class="headerlink" title="QA3"></a>QA3</h5><p>Q3: 本校直博保底吗？专硕保底吗？</p>
+<p>A3: </p>
+<p>很遗憾的告诉你，大概率是不保底的。</p>
+<p>如果你的开放日成绩非常差的话，是没有机会获得硕士名额的。并且如果你不愿意直博，那么就可能会面临本校不接收你的情况。对于直博来说，可能是先到先得，如果你提前联系导师，商定好直博，可能会希望大一点。</p>
+<p>而直博名额很可能在八月份申请满了（因为很多同学等不住了，直接直博了）。这种情况下，就只好继续在等待队列里等候专硕名额了。</p>
+<h5 id="QA4"><a href="#QA4" class="headerlink" title="QA4"></a>QA4</h5><p>Q4: 我年级第一，能不能直接上学硕？</p>
+<p>A4: </p>
+<p>想的美！</p>
+<p>学校接不接收你，以及你的类型，完全按照开放日成绩来排，跟你的绩点没有任何关系。举个极端情况：即使你是年级第一，但是在开放日中表现非常非常差，那么也可能存在学校不接收你的情况！！！而你绩点是保研边缘，但是在开放日中表现很优秀，也有可能获得学硕！</p>
+
+                </div>
+
+                
+                        
+<div class="article-copyright-info-container border-box">
+    <div class="copyright-info-content border-box">
+        <div class="copyright-info-top border-box">
+            <div class="post-title border-box text-ellipsis">
+                保研本校
+            </div>
+
+            <div class="post-link border-box text-ellipsis">
+                postgraduate_NJU/
+            </div>
+        </div>
+
+        <div class="copyright-info-bottom border-box">
+            <div class="post-author bottom-item">
+                <div class="type">
+                    Author
+                </div>
+                <div class="content">NJU ✗ 青协</div>
+            </div>
+
+            <div class="post-time bottom-item">
+                <div class="type">
+                    Published
+                </div>
+                <div class="content">2023-03-08 13:16</div>
+            </div>
+
+
+            <div class="post-license bottom-item">
+                <div class="type">
+                    License
+                </div>
+                <div class="content tooltip" data-tooltip-content="CC BY-NC-SA 4.0">
+                    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed">
+                        <i class="fa-brands fa-creative-commons"></i>
+                        <i class="fa-brands fa-creative-commons-by"></i>
+                        <i class="fa-brands fa-creative-commons-nc"></i>
+                        <i class="fa-brands fa-creative-commons-sa"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <i class="copyright-bg fa-solid fa-copyright"></i>
+    </div>
+    <div class="copy-copyright-info flex-center tooltip" data-tooltip-content="Copy copyright info" data-tooltip-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E4%BF%9D%E7%A0%94/">保研</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%BC%80%E6%94%BE%E6%97%A5/">开放日</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%A4%8F%E4%BB%A4%E8%90%A5/">夏令营</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E4%BF%9D%E7%A0%94%E6%9C%AC%E6%A0%A1/">保研本校</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="article-nav">
+                        
+                            <div class="article-prev">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/postgraduate_policy/"
+                                   title="近几年政策"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                      <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                            <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">近几年政策</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="article-next">
+                                <a class="next"
+                                   rel="next"
+                                   href="/postgraduate/"
+                                   title="推免流程"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">推免流程</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                            <span class="right arrow-icon flex-center">
+                                      <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        
+            
+
+    <div class="valine-container">
+        <script data-pjax src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+          function loadValine() {
+
+            const config = {
+              el: '#vcomments',
+              appId: 'gccMsw283QpALKFpPBF9f2cm-gzGzoHsz',
+              appKey: 'rdFRAPnJTB4qEix3lrgHYq7c',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: 'Please comment here ...',
+              lang: 'en'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            new Valine(config)
+
+            function getAuthor(language) {
+              switch (language) {
+                case 'en':
+                  return 'Author'
+                case 'zh-CN':
+                  return '博主'
+                case 'zh-TW':
+                  return '站長'
+                default:
+                  return 'Master'
+              }
+            }
+
+            // Add "Author" identify
+            const getValineDomTimer = setInterval(() => {
+              const vcards = document.querySelectorAll('#vcomments .vcards .vcard')
+              if (vcards.length > 0) {
+                let author = 'NJU ✗ 青协'
+
+                if (author) {
+                  for (let vcard of vcards) {
+                    const vnick_dom = vcard.querySelector('.vhead .vnick')
+                    const vnick = vnick_dom.innerHTML
+                    if (vnick === author) {
+                      vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                    }
+                  }
+                }
+                clearInterval(getValineDomTimer)
+              } else {
+                clearInterval(getValineDomTimer)
+              }
+            }, 2000)
+          }
+
+          if ('true' === 'true') {
+            const loadValineTimeout = setTimeout(() => {
+              loadValine()
+              clearTimeout(loadValineTimeout)
+            }, 1000)
+          } else {
+            window.addEventListener('DOMContentLoaded', loadValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%81%E5%8F%AF%E4%BB%A5%E5%8F%82%E5%8A%A0%EF%BC%9F"><span class="nav-text">谁可以参加？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%A6%E7%A1%95%E4%B8%93%E7%A1%95%E7%9B%B4%E5%8D%9A"><span class="nav-text">学硕专硕直博</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%94%E8%AF%95"><span class="nav-text">笔试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%A2%E8%AF%95"><span class="nav-text">面试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E7%AD%94Q-A"><span class="nav-text">问答Q&amp;A</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#QA1"><span class="nav-text">QA1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#QA2"><span class="nav-text">QA2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#QA3"><span class="nav-text">QA3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#QA4"><span class="nav-text">QA4</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2023
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">NJU ✗ 青协</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%81%E5%8F%AF%E4%BB%A5%E5%8F%82%E5%8A%A0%EF%BC%9F"><span class="nav-text">谁可以参加？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%A6%E7%A1%95%E4%B8%93%E7%A1%95%E7%9B%B4%E5%8D%9A"><span class="nav-text">学硕专硕直博</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%94%E8%AF%95"><span class="nav-text">笔试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%A2%E8%AF%95"><span class="nav-text">面试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E7%AD%94Q-A"><span class="nav-text">问答Q&amp;A</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#QA1"><span class="nav-text">QA1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#QA2"><span class="nav-text">QA2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#QA3"><span class="nav-text">QA3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#QA4"><span class="nav-text">QA4</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/dark-light-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/local-search.js"></script>
+
+
+<!-- code-block -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/code-block.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/lazyload.js"></script>
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/post/copyright-info.js"></script>
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.8.6/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
