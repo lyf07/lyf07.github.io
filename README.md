@@ -1,4 +1,4 @@
-# lyf07.github.io
+# README.MD
 Hello！ Here is NJUCS in class 2026!
 
 If you have any problems/questions/suggestions, feel free to leave them in the Issues module!
