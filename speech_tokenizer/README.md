@@ -3,6 +3,11 @@
 The page is served at `/speech_tokenizer/`. Comparison groups come from
 `_data/speech_tokenizer.json`; adding a group does not require editing the page.
 
+It is a standalone page available by direct URL, with an independent design.
+It is intentionally excluded from the main site's navigation, site search, and
+sitemap, and asks search engines not to index it. Keep these settings when adding
+groups; do not introduce a homepage link.
+
 Every group must have these three audio roles, in this order:
 
 | Role key    | Page label     | Purpose                                            |
