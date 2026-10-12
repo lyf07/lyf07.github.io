@@ -13,6 +13,15 @@ field names the actual speech tokenizer used for that group (for example, Kanade
 not the model used to generate its reference voice. Keep ordinary text at roughly
 16px and secondary labels at least 14px, including on phones.
 
+Entries with the same ordered pair of `timbre.sha256` and `content.sha256` appear
+as one comparison on the page. Its tokenizer selector switches the synthesis,
+metadata, download, and method-specific descriptions and notes; the two reference
+players are shared. Keep a complete three-role manifest entry for every tokenizer.
+The first matching entry is selected by default, and existing entry-ID permalinks
+select their corresponding tokenizer. Search includes every available tokenizer
+and selects a matching variant. Without JavaScript, each comparison still shows
+its default tokenizer and three playable audio roles.
+
 Every group must have these three audio roles, in this order:
 
 | Role key    | Page label     | Purpose                                            |
