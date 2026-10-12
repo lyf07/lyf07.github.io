@@ -6,6 +6,13 @@ These instructions apply to the speech tokenizer page and its supporting files:
 `assets/audio/speech_tokenizer/`, `_scripts/*speech_tokenizer*.py`, and
 `speech_tokenizer/README.md`. They do not change other pages on this site.
 
+This is a standalone, intentionally unlisted listening page. Keep `layout: null`,
+`nav: false`, and `sitemap: false`, with its own complete HTML document and styles.
+Do not add links to it in the main site's navigation, homepage, or search index.
+Keep a `noindex` robots meta tag. Preserve the direct URL `/speech_tokenizer/`.
+Its design must remain independent of the academic homepage; do not inherit the
+homepage header, footer, theme styles, or theme scripts.
+
 The user requires **every comparison group to contain all three audio roles**:
 
 1. `timbre`: 提音色的音频 — the reference from which speaker timbre is extracted.

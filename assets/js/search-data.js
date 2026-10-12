@@ -37,13 +37,6 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "nav-speech-tokenizer",
-          title: "Speech Tokenizer",
-          description: "音色、内容与合成语音的听感对比",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/speech_tokenizer/";
-          },
         },{id: "post-a-post-with-plotly-js",
         
           title: "a post with plotly.js",
