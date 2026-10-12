@@ -8,6 +8,11 @@ It is intentionally excluded from the main site's navigation, site search, and
 sitemap, and asks search engines not to index it. Keep these settings when adding
 groups; do not introduce a homepage link.
 
+Each comparison number is paired with a prominent tokenizer badge. The `method`
+field names the actual speech tokenizer used for that group (for example, Kanade),
+not the model used to generate its reference voice. Keep ordinary text at roughly
+16px and secondary labels at least 14px, including on phones.
+
 Every group must have these three audio roles, in this order:
 
 | Role key    | Page label     | Purpose                                            |

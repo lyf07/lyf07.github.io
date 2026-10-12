@@ -17,6 +17,7 @@ body {
   background: var(--st-bg);
   color: var(--st-text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -48,14 +49,14 @@ input {
 }
 .st-eyebrow {
   margin: 0 0 0.6rem;
-  font-size: 0.68rem;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.16em;
   color: var(--st-muted);
 }
 .st-lead {
   margin: 0 0 1.2rem;
-  font-size: 1.1rem;
+  font-size: 18px;
   line-height: 1.6;
 }
 .st-flow {
@@ -67,7 +68,7 @@ input {
 .st-flow-item {
   padding: 0.4rem 0.75rem;
   border-radius: 8px;
-  font-size: 0.85rem;
+  font-size: 14px;
   font-weight: 500;
 }
 .st-flow-item.st-timbre {
@@ -97,7 +98,7 @@ input {
 }
 .st-search label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 14px;
   margin-bottom: 0.4rem;
 }
 .st-search input {
@@ -109,7 +110,7 @@ input {
   background: var(--st-bg);
   color: inherit;
   font: inherit;
-  font-size: 0.85rem;
+  font-size: 14px;
 }
 .st-toolbar-actions {
   display: flex;
@@ -118,7 +119,7 @@ input {
 }
 .st-count {
   color: var(--st-muted);
-  font-size: 0.8rem;
+  font-size: 14px;
   white-space: nowrap;
 }
 .st-toolbar-actions button {
@@ -128,7 +129,7 @@ input {
   background: transparent;
   color: inherit;
   font: inherit;
-  font-size: 0.8rem;
+  font-size: 14px;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -139,7 +140,7 @@ input {
 .st-listening-tip {
   margin: 0.8rem 0 1.5rem;
   color: var(--st-muted);
-  font-size: 0.78rem;
+  font-size: 14px;
   line-height: 1.65;
 }
 .st-group {
@@ -157,25 +158,25 @@ input {
 }
 .st-case-number {
   margin: 0 0 0.5rem;
-  font-size: 0.7rem;
+  font-size: 14px;
   letter-spacing: 0.1em;
   color: var(--st-muted);
 }
 .st-group-header h2 {
   margin: 0 0 0.5rem;
-  font-size: 1.22rem;
+  font-size: 20px;
   font-weight: 500;
   line-height: 1.5;
 }
 .st-group-description {
   margin: 0;
   color: var(--st-muted);
-  font-size: 0.85rem;
+  font-size: 14px;
   line-height: 1.65;
 }
 .st-permalink {
   padding: 0.25rem 0.5rem;
-  font-size: 1.2rem;
+  font-size: 19px;
   color: var(--st-muted);
 }
 .st-tags {
@@ -189,7 +190,7 @@ input {
   border: 1px solid var(--st-border);
   border-radius: 999px;
   color: var(--st-muted);
-  font-size: 0.65rem;
+  font-size: 14px;
 }
 .st-audio-grid {
   display: grid;
@@ -222,29 +223,29 @@ input {
   align-items: center;
 }
 .st-role-number {
-  font-size: 0.72rem;
+  font-size: 14px;
   font-weight: 600;
 }
 .st-role-hint {
-  font-size: 0.62rem;
+  font-size: 14px;
   color: var(--st-muted);
 }
 .st-audio-card h3 {
   margin: 0 0 0.5rem;
-  font-size: 0.95rem;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.5;
 }
 .st-clip-label {
   margin: 0;
-  font-size: 0.78rem;
+  font-size: 14px;
   line-height: 1.65;
   min-height: 2.6rem;
 }
 .st-audio-meta {
   margin: 0.6rem 0 1rem;
   color: var(--st-muted);
-  font-size: 0.66rem;
+  font-size: 14px;
   line-height: 1.6;
 }
 .st-audio-meta span {
@@ -259,20 +260,20 @@ input {
   align-self: flex-start;
   margin-top: 0.9rem;
   color: var(--st-timbre);
-  font-size: 0.72rem;
+  font-size: 14px;
 }
 .st-download span {
   margin-left: 0.2rem;
 }
 .st-audio-error {
-  font-size: 0.72rem;
+  font-size: 14px;
   color: #a33434;
   line-height: 1.5;
   margin: 0.6rem 0 0;
 }
 .st-group-note {
   margin: 1rem 0 0;
-  font-size: 0.78rem;
+  font-size: 14px;
   color: var(--st-muted);
   line-height: 1.7;
 }
@@ -282,7 +283,7 @@ input {
   border-top: 1px solid var(--st-border);
 }
 .st-transcripts summary {
-  font-size: 0.8rem;
+  font-size: 14px;
   cursor: pointer;
 }
 .st-transcript-grid {
@@ -292,11 +293,11 @@ input {
   margin-top: 1rem;
 }
 .st-transcript-grid h3 {
-  font-size: 0.78rem;
+  font-size: 14px;
   font-weight: 500;
 }
 .st-transcript-grid p {
-  font-size: 0.76rem;
+  font-size: 14px;
   line-height: 1.8;
   margin: 0;
 }
@@ -350,7 +351,7 @@ input {
   }
   .st-flow-item {
     padding: 0.4rem 0.5rem;
-    font-size: 0.75rem;
+    font-size: 14px;
   }
 }
 
@@ -382,7 +383,7 @@ input {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.13em;
 }
@@ -408,7 +409,7 @@ input {
   display: flex;
   gap: 8px;
   align-items: center;
-  font-size: 10px;
+  font-size: 14px;
   color: var(--st-muted);
 }
 .st-status > span {
@@ -430,7 +431,7 @@ input {
 .st-eyebrow {
   margin: 0 0 16px;
   color: var(--st-timbre);
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.22em;
 }
 .st-intro h1 {
@@ -449,14 +450,14 @@ input {
 }
 .st-lead {
   margin: 24px 0 10px;
-  font-size: 18px;
+  font-size: 22px;
   letter-spacing: 0.01em;
 }
 .st-hero-note {
   max-width: 420px;
   margin: 0;
   color: var(--st-muted);
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.9;
 }
 .st-flow {
@@ -482,11 +483,11 @@ input {
 }
 .st-flow-item > span {
   margin-bottom: 9px;
-  font-size: 9px;
+  font-size: 14px;
   letter-spacing: 0.06em;
 }
 .st-flow-item > strong {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 550;
 }
 .st-flow-item.st-timbre {
@@ -506,7 +507,7 @@ input {
 .st-flow-symbol {
   color: var(--st-muted);
   text-align: center;
-  font-size: 22px;
+  font-size: 28px;
 }
 .st-flow-symbol:nth-of-type(2) {
   grid-column: 1 / -1;
@@ -520,7 +521,7 @@ input {
   border-top: 1px solid var(--st-border);
 }
 .st-search label {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--st-muted);
@@ -528,7 +529,7 @@ input {
 .st-search input {
   padding: 12px 14px;
   background: #101921;
-  font-size: 12px;
+  font-size: 16px;
 }
 .st-search input::placeholder {
   color: #7e92a4;
@@ -537,14 +538,14 @@ input {
   gap: 18px;
 }
 .st-count {
-  font-size: 11px;
+  font-size: 16px;
 }
 .st-toolbar-actions button {
   padding: 11px 16px;
   border-color: #395e54;
   background: #1b352f;
   color: var(--st-timbre);
-  font-size: 11px;
+  font-size: 16px;
 }
 .st-toolbar-actions button:disabled {
   opacity: 1;
@@ -554,7 +555,7 @@ input {
 }
 .st-listening-tip {
   margin: 12px 0 30px;
-  font-size: 11px;
+  font-size: 16px;
 }
 .st-group {
   margin: 0 0 26px;
@@ -564,16 +565,16 @@ input {
 }
 .st-case-number {
   margin-bottom: 10px;
-  font-size: 10px;
+  font-size: 14px;
 }
 .st-group-header h2 {
   margin-bottom: 10px;
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 550;
 }
 .st-group-description {
   max-width: 790px;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.9;
 }
 .st-tags {
@@ -583,7 +584,7 @@ input {
 .st-tags span {
   padding: 3px 9px;
   border-radius: 5px;
-  font-size: 9px;
+  font-size: 14px;
 }
 .st-audio-grid {
   gap: 16px;
@@ -612,25 +613,25 @@ input {
   border: 1px solid var(--st-border);
   border-radius: 7px;
   color: var(--st-role);
-  font-size: 10px;
+  font-size: 14px;
 }
 .st-role-hint {
-  font-size: 9px;
+  font-size: 14px;
 }
 .st-audio-card h3 {
   margin-bottom: 10px;
   color: var(--st-role);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 550;
 }
 .st-clip-label {
   min-height: 38px;
-  font-size: 11px;
+  font-size: 16px;
   line-height: 1.8;
 }
 .st-audio-meta {
   margin: 15px 0 18px;
-  font-size: 9px;
+  font-size: 14px;
 }
 .st-audio-card audio {
   color-scheme: light;
@@ -638,15 +639,15 @@ input {
 .st-download {
   margin-top: 16px;
   color: var(--st-role);
-  font-size: 10px;
+  font-size: 14px;
 }
 .st-audio-error {
   color: #ffb8ab;
-  font-size: 11px;
+  font-size: 16px;
 }
 .st-group-note {
   margin-top: 20px;
-  font-size: 11px;
+  font-size: 16px;
   line-height: 1.9;
 }
 .st-transcripts {
@@ -654,18 +655,18 @@ input {
   padding-top: 18px;
 }
 .st-transcripts summary {
-  font-size: 11px;
+  font-size: 16px;
 }
 .st-transcript-grid {
   gap: 30px;
   margin-top: 20px;
 }
 .st-transcript-grid h3 {
-  font-size: 11px;
+  font-size: 16px;
 }
 .st-transcript-grid p {
   color: var(--st-muted);
-  font-size: 11px;
+  font-size: 16px;
   line-height: 1.9;
 }
 .st-footer {
@@ -676,7 +677,7 @@ input {
   margin-top: 46px;
   padding: 22px 0 36px;
   border-top: 1px solid var(--st-border);
-  font-size: 9px;
+  font-size: 14px;
   color: #8fa2b2;
 }
 .st-skip-link {
@@ -716,7 +717,7 @@ input {
   }
   .st-wordmark,
   .st-status {
-    font-size: 9px;
+    font-size: 14px;
   }
   .st-intro {
     grid-template-columns: 1fr;
@@ -728,7 +729,7 @@ input {
   }
   .st-lead {
     margin-top: 20px;
-    font-size: 16px;
+    font-size: 20px;
   }
   .st-flow {
     padding: 14px;
@@ -745,7 +746,7 @@ input {
     padding: 20px 16px;
   }
   .st-group-header h2 {
-    font-size: 18px;
+    font-size: 22px;
   }
   .st-transcript-grid {
     grid-template-columns: 1fr;
@@ -755,5 +756,94 @@ input {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+.st-case-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.st-case-heading .st-case-number {
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.st-tokenizer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid #46796d;
+  border-radius: 8px;
+  background: #203e35;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.st-tokenizer-key {
+  color: #bdd7d0;
+  font-size: 14px;
+}
+.st-tokenizer-badge strong {
+  color: var(--st-timbre);
+  font-size: 20px;
+  font-weight: 700;
+}
+.st-group-header {
+  position: relative;
+  display: block;
+}
+.st-group-header h2 {
+  padding-right: 30px;
+}
+.st-permalink {
+  position: absolute;
+  top: 60px;
+  right: -8px;
+}
+.st-group-description,
+.st-hero-note,
+.st-listening-tip,
+.st-clip-label,
+.st-group-note,
+.st-transcript-grid p {
+  font-size: 16px;
+  line-height: 1.8;
+}
+.st-search label,
+.st-flow-item > span,
+.st-tags span,
+.st-audio-meta,
+.st-role-hint,
+.st-download,
+.st-footer,
+.st-status {
+  font-size: 14px;
+}
+.st-audio-card h3 {
+  font-size: 20px;
+}
+.st-audio-card {
+  padding-top: 24px;
+}
+.st-transcripts summary,
+.st-transcript-grid h3 {
+  font-size: 16px;
+}
+@media (max-width: 640px) {
+  .st-case-heading {
+    gap: 10px;
+  }
+  .st-group-header h2 {
+    font-size: 24px;
+  }
+  .st-tokenizer-badge {
+    padding: 7px 8px;
+  }
+  .st-flow-item {
+    padding: 14px 8px;
   }
 }

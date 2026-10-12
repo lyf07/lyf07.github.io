@@ -50,7 +50,7 @@ sitemap: false
       <div class="st-toolbar">
         <div class="st-search">
           <label for="st-search-input">查找对比组</label>
-          <input id="st-search-input" type="search" placeholder="搜索分组、模型或标签" autocomplete="off" aria-controls="st-groups" />
+          <input id="st-search-input" type="search" placeholder="搜索对比组或 tokenizer" autocomplete="off" aria-controls="st-groups" />
         </div>
         <div class="st-toolbar-actions">
           <span id="st-group-count" class="st-count" role="status">{{ site.data.speech_tokenizer.groups | size }} 组对比</span>
@@ -69,7 +69,12 @@ sitemap: false
         >
           <header class="st-group-header">
             <div>
-              <p class="st-case-number">对比 {{ forloop.index | prepend: '0' | slice: -2, 2 }}</p>
+              <div class="st-case-heading">
+                <p class="st-case-number">对比 {{ forloop.index | prepend: '0' | slice: -2, 2 }}</p>
+                <span class="st-tokenizer-badge" aria-label="本组使用的 tokenizer：{{ group.method | escape }}">
+                  <span class="st-tokenizer-key">Tokenizer</span><strong>{{ group.method | escape }}</strong>
+                </span>
+              </div>
               <h2 id="{{ group.id | escape }}-title">{{ group.title | escape }}</h2>
               <p class="st-group-description">{{ group.description | escape }}</p>
             </div>
