@@ -4,10 +4,6 @@ title: about
 permalink: /
 subtitle: Ph.D. Student in Computer Science · University of California, Santa Barbara
 
-profile:
-  align: right
-  image: ghibli.png
-  image_circular: false # crops the image to make it circular
 selected_papers: false # publications are included with the CV content below
 social: true # includes social icons at the bottom of the page
 
@@ -26,7 +22,5 @@ I received my B.Sc. in Computer Science and Technology from Nanjing University i
 I'm interested in LLMs, especially in their **reasoning**, **multilinguality** and **agentic ability.**
 
 You can reach me at [yifengliu@ucsb.edu](mailto:yifengliu@ucsb.edu).
-
-<div class="clearfix"></div>
 
 {% include academic_cv.liquid %}
