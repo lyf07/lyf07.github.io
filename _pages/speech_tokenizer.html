@@ -1,0 +1,91 @@
+---
+layout: page
+title: Speech Tokenizer
+description: 音色、内容与合成语音的听感对比
+permalink: /speech_tokenizer/
+nav: true
+nav_order: 9
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/speech_tokenizer.css' | relative_url }}">
+
+<div class="speech-tokenizer" lang="zh-CN">
+  <section class="st-intro" aria-label="对比方式">
+    <p class="st-eyebrow">SPEECH DISENTANGLEMENT</p>
+    <p class="st-lead">同一组，三段声音。听参考音色如何进入新的内容。</p>
+    <div class="st-flow" aria-label="参考音色与源音频内容组合生成合成语音">
+      <span class="st-flow-item st-timbre">音色参考</span>
+      <span class="st-flow-symbol" aria-hidden="true">+</span>
+      <span class="st-flow-item st-content">内容来源</span>
+      <span class="st-flow-symbol" aria-hidden="true">→</span>
+      <span class="st-flow-item st-synthesis">合成结果</span>
+    </div>
+  </section>
+
+  <div class="st-toolbar">
+    <div class="st-search">
+      <label for="st-search-input">查找对比组</label>
+      <input id="st-search-input" type="search" placeholder="搜索分组、模型或标签" autocomplete="off" aria-controls="st-groups">
+    </div>
+    <div class="st-toolbar-actions">
+      <span id="st-group-count" class="st-count" role="status">{{ site.data.speech_tokenizer.groups | size }} 组对比</span>
+      <button id="st-pause-all" type="button" disabled>暂停播放</button>
+    </div>
+  </div>
+  <p class="st-listening-tip">切换播放时，其他音频会自动暂停。每组都包含音色参考、内容来源和合成结果。</p>
+
+  <div id="st-groups">
+    {% assign roles = "timbre,content,synthesis" | split: "," %}
+    {% for group in site.data.speech_tokenizer.groups %}
+    <section class="st-group" id="{{ group.id | escape }}" aria-labelledby="{{ group.id | escape }}-title" data-search="{{ group.title | escape }} {{ group.method | escape }} {{ group.description | escape }} {{ group.tags | join: ' ' | escape }} {{ group.id | escape }}">
+      <header class="st-group-header">
+        <div>
+          <p class="st-case-number">对比 {{ forloop.index | prepend: '0' | slice: -2, 2 }}</p>
+          <h2 id="{{ group.id | escape }}-title">{{ group.title | escape }}</h2>
+          <p class="st-group-description">{{ group.description | escape }}</p>
+        </div>
+        <a class="st-permalink" href="#{{ group.id | escape }}" aria-label="链接到 {{ group.title | escape }}">#</a>
+      </header>
+      <div class="st-tags" aria-label="模型和标签">
+        {% for tag in group.tags %}<span>{{ tag | escape }}</span>{% endfor %}
+      </div>
+      <div class="st-audio-grid">
+        {% for role in roles %}
+          {% assign clip = group.audio[role] %}
+          {% case role %}
+            {% when "timbre" %}{% assign role_title = "提音色的音频" %}{% assign role_hint = "提供声音特征" %}{% assign role_number = "01" %}
+            {% when "content" %}{% assign role_title = "提内容的音频" %}{% assign role_hint = "提供说话内容" %}{% assign role_number = "02" %}
+            {% when "synthesis" %}{% assign role_title = "合成之后的音频" %}{% assign role_hint = "参考音色 + 源内容" %}{% assign role_number = "03" %}
+          {% endcase %}
+        <article class="st-audio-card st-{{ role }}" aria-labelledby="{{ group.id | escape }}-{{ role }}-title">
+          <div class="st-card-topline"><span class="st-role-number">{{ role_number }}</span><span class="st-role-hint">{{ role_hint }}</span></div>
+          <h3 id="{{ group.id | escape }}-{{ role }}-title">{{ role_title }}</h3>
+          <p class="st-clip-label">{{ clip.label | escape }}</p>
+          <p class="st-audio-meta">{{ clip.duration }} 秒 <span aria-hidden="true">·</span> {{ clip.sampleRate | divided_by: 1000.0 }} kHz <span aria-hidden="true">·</span> {% if clip.channels == 1 %}单声道{% else %}{{ clip.channels }} 声道{% endif %}</p>
+          <audio controls preload="metadata" data-role="{{ role }}" aria-label="{{ group.title | escape }}，{{ role_title }}">
+            <source src="{{ clip.src | relative_url }}" type="audio/wav">
+            <a href="{{ clip.src | relative_url }}">下载该音频</a>
+          </audio>
+          <p class="st-audio-error" role="alert" hidden>音频加载失败，请使用下载链接或稍后重试。</p>
+          <a class="st-download" href="{{ clip.src | relative_url }}" download>下载 WAV <span aria-hidden="true">↗</span></a>
+        </article>
+        {% endfor %}
+      </div>
+      {% for note in group.notes %}<p class="st-group-note">{{ note | escape }}</p>{% endfor %}
+      {% if group.transcripts.timbre != "" or group.transcripts.content != "" %}
+      <details class="st-transcripts">
+        <summary>查看音频文本</summary>
+        <div class="st-transcript-grid">
+          {% if group.transcripts.timbre != "" %}<div><h3>音色参考文本</h3><p lang="en">{{ group.transcripts.timbre | escape }}</p></div>{% endif %}
+          {% if group.transcripts.content != "" %}<div><h3>内容来源文本</h3><p lang="en">{{ group.transcripts.content | escape }}</p></div>{% endif %}
+        </div>
+      </details>
+      {% endif %}
+    </section>
+    {% endfor %}
+  </div>
+  <p id="st-empty-state" class="st-empty-state" hidden>没有匹配的对比组。试试其他关键词。</p>
+  <noscript><p>音频播放器可以直接使用；搜索和自动暂停需要启用 JavaScript。</p></noscript>
+</div>
+
+<script src="{{ '/assets/js/speech_tokenizer.js' | relative_url }}" defer></script>

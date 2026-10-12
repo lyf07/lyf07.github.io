@@ -6,6 +6,7 @@ on:
       - master
       - main
     paths:
+      - "_data/speech_tokenizer.json"
       - "assets/**"
       - "_sass/**"
       - "_scripts/**"
@@ -35,6 +36,7 @@ on:
       - master
       - main
     paths:
+      - "_data/speech_tokenizer.json"
       - "assets/**"
       - "_sass/**"
       - "_scripts/**"
@@ -88,6 +90,8 @@ jobs:
           valueFile: "_config.yml"
           propertyPath: "giscus.repo"
           value: ${{ github.repository }}
+      - name: Validate speech tokenizer audio groups
+        run: python3 _scripts/validate_speech_tokenizer.py
       - name: Install and Build 🔧
         run: |
           sudo apt-get update && sudo apt-get install -y imagemagick

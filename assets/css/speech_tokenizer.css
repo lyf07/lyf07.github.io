@@ -1,0 +1,73 @@
+.speech-tokenizer {
+  --st-timbre: #137967;
+  --st-content: #a44d2a;
+  --st-synthesis: #7650bd;
+  color: var(--global-text-color, #20252d);
+}
+.speech-tokenizer [hidden] { display: none !important; }
+.st-intro { margin: 1rem 0 2rem; padding: 1.5rem 1.6rem; border: 1px solid var(--global-divider-color, #dce1e7); border-radius: 16px; }
+.st-eyebrow { margin: 0 0 .6rem; font-size: .68rem; font-weight: 600; letter-spacing: .16em; color: var(--global-text-color-light, #69717d); }
+.st-lead { margin: 0 0 1.2rem; font-size: 1.1rem; line-height: 1.6; }
+.st-flow { display: flex; align-items: center; gap: .7rem; flex-wrap: wrap; }
+.st-flow-item { padding: .4rem .75rem; border-radius: 8px; font-size: .85rem; font-weight: 500; }
+.st-flow-item.st-timbre { background: rgba(19, 121, 103, .1); color: var(--st-timbre); }
+.st-flow-item.st-content { background: rgba(164, 77, 42, .1); color: var(--st-content); }
+.st-flow-item.st-synthesis { background: rgba(118, 80, 189, .1); color: var(--st-synthesis); }
+.st-flow-symbol { color: var(--global-text-color-light, #69717d); }
+.st-toolbar { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
+.st-search { flex: 1; max-width: 400px; }
+.st-search label { display: block; font-size: .8rem; margin-bottom: .4rem; }
+.st-search input { width: 100%; min-width: 0; padding: .65rem .8rem; border: 1px solid var(--global-divider-color, #dce1e7); border-radius: 8px; background: var(--global-bg-color, #fff); color: inherit; font: inherit; font-size: .85rem; }
+.st-toolbar-actions { display: flex; align-items: center; gap: 1rem; }
+.st-count { color: var(--global-text-color-light, #69717d); font-size: .8rem; white-space: nowrap; }
+.st-toolbar-actions button { border: 1px solid var(--global-divider-color, #dce1e7); border-radius: 8px; padding: .65rem .8rem; background: transparent; color: inherit; font: inherit; font-size: .8rem; white-space: nowrap; cursor: pointer; }
+.st-toolbar-actions button:disabled { opacity: .45; cursor: default; }
+.st-listening-tip { margin: .8rem 0 1.5rem; color: var(--global-text-color-light, #69717d); font-size: .78rem; line-height: 1.65; }
+.st-group { margin-bottom: 2rem; padding: 1.5rem; border: 1px solid var(--global-divider-color, #dce1e7); border-radius: 16px; scroll-margin-top: 100px; }
+.st-group-header { display: flex; justify-content: space-between; align-items: flex-start; gap: .8rem; }
+.st-case-number { margin: 0 0 .5rem; font-size: .7rem; letter-spacing: .1em; color: var(--global-text-color-light, #69717d); }
+.st-group-header h2 { margin: 0 0 .5rem; font-size: 1.22rem; font-weight: 500; line-height: 1.5; }
+.st-group-description { margin: 0; color: var(--global-text-color-light, #69717d); font-size: .85rem; line-height: 1.65; }
+.st-permalink { padding: .25rem .5rem; font-size: 1.2rem; color: var(--global-text-color-light, #69717d); }
+.st-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: .9rem 0 1.3rem; }
+.st-tags span { padding: .2rem .55rem; border: 1px solid var(--global-divider-color, #dce1e7); border-radius: 999px; color: var(--global-text-color-light, #69717d); font-size: .65rem; }
+.st-audio-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
+.st-audio-card { padding: 1rem .85rem; border: 1px solid var(--global-divider-color, #dce1e7); border-top: 3px solid; border-radius: 10px; min-width: 0; display: flex; flex-direction: column; }
+.st-audio-card.st-timbre { border-top-color: var(--st-timbre); }
+.st-audio-card.st-content { border-top-color: var(--st-content); }
+.st-audio-card.st-synthesis { border-top-color: var(--st-synthesis); }
+.st-card-topline { display: flex; justify-content: space-between; gap: .25rem; margin-bottom: .9rem; align-items: center; }
+.st-role-number { font-size: .72rem; font-weight: 600; }
+.st-role-hint { font-size: .62rem; color: var(--global-text-color-light, #69717d); }
+.st-audio-card h3 { margin: 0 0 .5rem; font-size: .95rem; font-weight: 500; line-height: 1.5; }
+.st-clip-label { margin: 0; font-size: .78rem; line-height: 1.65; min-height: 2.6rem; }
+.st-audio-meta { margin: .6rem 0 1rem; color: var(--global-text-color-light, #69717d); font-size: .66rem; line-height: 1.6; }
+.st-audio-meta span { margin: 0 .15rem; }
+.st-audio-card audio { width: 100%; height: 40px; margin-top: auto; }
+.st-download { align-self: flex-start; margin-top: .9rem; color: var(--global-theme-color, #7650bd); font-size: .72rem; }
+.st-download span { margin-left: .2rem; }
+.st-audio-error { font-size: .72rem; color: #a33434; line-height: 1.5; margin: .6rem 0 0; }
+.st-group-note { margin: 1rem 0 0; font-size: .78rem; color: var(--global-text-color-light, #69717d); line-height: 1.7; }
+.st-transcripts { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--global-divider-color, #dce1e7); }
+.st-transcripts summary { font-size: .8rem; cursor: pointer; }
+.st-transcript-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; margin-top: 1rem; }
+.st-transcript-grid h3 { font-size: .78rem; font-weight: 500; }
+.st-transcript-grid p { font-size: .76rem; line-height: 1.8; margin: 0; }
+.st-empty-state { padding: 2rem 1rem; text-align: center; color: var(--global-text-color-light, #69717d); }
+.speech-tokenizer :is(input, button, a, summary):focus-visible { outline: 3px solid var(--global-theme-color, #7650bd); outline-offset: 3px; }
+html[data-theme="dark"] .speech-tokenizer { --st-timbre: #7dd1bd; --st-content: #eeae85; --st-synthesis: #bca2ee; }
+@media (max-width: 760px) {
+  .st-audio-grid { grid-template-columns: 1fr; gap: .9rem; }
+  .st-audio-card { padding: 1.1rem; }
+  .st-clip-label { min-height: 0; }
+  .st-audio-meta { margin: .4rem 0 .8rem; }
+}
+@media (max-width: 540px) {
+  .st-intro, .st-group { padding: 1.1rem; border-radius: 12px; }
+  .st-toolbar { flex-direction: column; align-items: stretch; gap: .7rem; }
+  .st-search { max-width: none; }
+  .st-toolbar-actions { justify-content: space-between; }
+  .st-transcript-grid { grid-template-columns: 1fr; }
+  .st-flow { gap: .4rem; }
+  .st-flow-item { padding: .4rem .5rem; font-size: .75rem; }
+}

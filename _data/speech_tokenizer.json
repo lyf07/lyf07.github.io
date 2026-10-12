@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "groups": [
+    {
+      "id": "y7wnqdhoc2k-angry-male",
+      "title": "愤怒成年男声 × 新闻播报",
+      "description": "从 Qwen 生成的男声中提取音色，结合原始新闻播报的内容 token，通过 Kanade 重建语音。",
+      "method": "Kanade",
+      "tags": [
+        "Qwen3-TTS",
+        "Kanade",
+        "愤怒成年男声"
+      ],
+      "audio": {
+        "timbre": {
+          "src": "assets/audio/speech_tokenizer/y7wnqdhoc2k-angry-male/timbre.wav",
+          "label": "Qwen3-TTS · 愤怒成年男声",
+          "duration": 22.72,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "87db7c052b4eb9ea36200f2d707806a7d8e6f8141783dbd65cb1e68f78c16e3e"
+        },
+        "content": {
+          "src": "assets/audio/speech_tokenizer/y7wnqdhoc2k-angry-male/content.wav",
+          "label": "原始新闻播报",
+          "duration": 30.0,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "10f0bf7768a17fad68e4c0371560febd9a0494d54c786e8b9771d84135ec3050"
+        },
+        "synthesis": {
+          "src": "assets/audio/speech_tokenizer/y7wnqdhoc2k-angry-male/synthesis.wav",
+          "label": "Kanade · 音色与内容重建",
+          "duration": 30.0,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "2e343d4eb1272b3b983a0d8f173f900fa60b83e701abee0c274e981aefb1fdb2"
+        }
+      },
+      "transcripts": {
+        "timbre": "Are you kidding me? It’s two in the morning, and you’re still blasting music! I’ve asked you three times to turn it down. Three times! I have to be up in four hours, and I haven’t slept at all. And don’t tell me to calm down. I was calm the first time I asked! This is my apartment too, and I shouldn’t have to beg for some peace and quiet. Turn the music off and tell your friends to go home. I’m done asking.",
+        "content": "Welcome to All Hands Update. I'm Petty Officer Ashley Hedrick with your headlines from Around the Fleet. Sailors aboard USS Jason Dunham recently took part in a two-week sleep study. The goal is to find the best watch rotation to optimize the amount of sleep sailors are getting so that they can be alert on watch. The Navy will use the results to provide guidance to commanding officers around the fleet. We wanted to finish out 2012 by taking a moment to recognize the people behind the scenes that make All Hands Update possible."
+      },
+      "notes": [
+        "音色参考使用争执台词；合成结果表达内容来源中的新闻播报文本。"
+      ]
+    }
+  ]
+}
