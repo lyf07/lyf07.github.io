@@ -22,6 +22,11 @@ The user requires **every comparison group to contain all three audio roles**:
 Keep these stable role keys and display order when adding or editing groups. Never
 publish an incomplete group or silently substitute a different audio file.
 
+Show each group's actual speech tokenizer (`group.method`) prominently beside
+its comparison number. The voice-generation model is secondary and should not
+dominate titles, tags, or audio labels. Keep body text around 16px and secondary
+labels at least 14px on desktop and mobile; never shrink text to fit a narrow card.
+
 Use `_data/speech_tokenizer.json` as the single group manifest. Each audio entry
 must specify `src`, `label`, `duration`, `sampleRate`, `channels`, and `sha256`.
 Store the three files at `assets/audio/speech_tokenizer/<group-id>/<role>.wav`.
