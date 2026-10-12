@@ -798,9 +798,13 @@ select {
   padding: 2px 28px 2px 2px;
   border: 0;
   border-radius: 4px;
-  background: transparent
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%237be0c4' stroke-width='2'/%3E%3C/svg%3E")
-    no-repeat right 6px center;
+  background-color: transparent;
+  background-image: linear-gradient(45deg, transparent 50%, var(--st-timbre) 50%), linear-gradient(135deg, var(--st-timbre) 50%, transparent 50%);
+  background-position:
+    right 12px center,
+    right 6px center;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
   color: var(--st-timbre);
   font-size: 16px;
   font-weight: 700;
