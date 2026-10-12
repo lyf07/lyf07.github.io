@@ -26,7 +26,8 @@ a {
   text-decoration: none;
 }
 button,
-input {
+input,
+select {
   font: inherit;
 }
 [hidden] {
@@ -306,7 +307,7 @@ input {
   text-align: center;
   color: var(--st-muted);
 }
-.speech-tokenizer :is(input, button, a, summary):focus-visible {
+.speech-tokenizer :is(input, button, select, a, summary):focus-visible {
   outline: 3px solid var(--st-timbre);
   outline-offset: 3px;
 }
@@ -775,22 +776,59 @@ input {
 .st-tokenizer-badge {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
+  max-width: 100%;
   padding: 7px 10px;
   border: 1px solid #46796d;
   border-radius: 8px;
   background: #203e35;
   line-height: 1.25;
-  white-space: nowrap;
+  white-space: normal;
 }
 .st-tokenizer-key {
+  flex-shrink: 0;
   color: #bdd7d0;
   font-size: 14px;
 }
-.st-tokenizer-badge strong {
+.st-tokenizer-select {
+  appearance: none;
+  min-width: 0;
+  max-width: 100%;
+  padding: 2px 28px 2px 2px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%237be0c4' stroke-width='2'/%3E%3C/svg%3E")
+    no-repeat right 6px center;
   color: var(--st-timbre);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.st-tokenizer-select option {
+  background: var(--st-panel);
+  color: var(--st-text);
+}
+.st-tokenizer-select:disabled {
+  padding-right: 2px;
+  background-image: none;
+  color: var(--st-timbre);
+  opacity: 1;
+  -webkit-text-fill-color: var(--st-timbre);
+  cursor: default;
+}
+.st-audio-clip {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.st-variant-anchor {
+  display: block;
+  height: 0;
+  scroll-margin-top: 24px;
 }
 .st-group-header {
   position: relative;
