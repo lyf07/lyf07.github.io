@@ -2,36 +2,31 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='https://www.nju.edu.cn/en/'>Nanjing University</a>.
+subtitle: Ph.D. Student in Computer Science · University of California, Santa Barbara
 
 profile:
   align: right
   image: ghibli.png
   image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>Forbes Avenue</p>
-    <p>Pittsburgh, PA 15213</p>
-
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # publications are included with the CV content below
 social: true # includes social icons at the bottom of the page
 
 announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
+  enabled: false
 
 latest_posts:
-  enabled: true
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+  enabled: false
 ---
 
 Hi, welcome to my website!
 
-I'm Yifeng Liu (Chinese Name: 刘奕风).
-
-I'm an incoming senior student in Nanjing University.
+I'm Yifeng Liu (刘奕风), a Ph.D. student in Computer Science at the University of California, Santa Barbara, advised by Shiyu Chang.
+I received my B.Sc. in Computer Science and Technology from Nanjing University in June 2026.
 
 I'm interested in LLMs, especially in their **reasoning**, **multilinguality** and **agentic ability.**
 
-You can reach me through email: yfliu [at] smail.nju.edu.cn
+You can reach me at [yifengliu@ucsb.edu](mailto:yifengliu@ucsb.edu).
+
+<div class="clearfix"></div>
+
+{% include academic_cv.liquid %}
