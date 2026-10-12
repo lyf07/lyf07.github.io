@@ -1,16 +1,18 @@
-<section class="mt-4" aria-labelledby="education">
-  <h2 id="education">Education</h2>
-  <div class="mb-4">
-    <h3 class="h5 font-weight-bold">University of California, Santa Barbara</h3>
-    <p class="mb-1">Ph.D. student in Computer Science <span class="text-muted">· Sep 2026–Present</span></p>
-    <p>Advisor: Shiyu Chang</p>
-  </div>
-  <div class="mb-4">
-    <h3 class="h5 font-weight-bold">Nanjing University</h3>
-    <p class="mb-1">B.Sc. in Computer Science and Technology <span class="text-muted">· Sep 2022–Jun 2026</span></p>
-    <p>GPA: 4.55/5.00 · Average Score: 91/100</p>
-  </div>
-</section>
+{% unless include.show_education == false %}
+  <section class="mt-4" aria-labelledby="education">
+    <h2 id="education">Education</h2>
+    <div class="mb-4">
+      <h3 class="h5 font-weight-bold">University of California, Santa Barbara</h3>
+      <p class="mb-1">Ph.D. student in Computer Science <span class="text-muted">· Sep 2026–Present</span></p>
+      <p>Advisor: Shiyu Chang</p>
+    </div>
+    <div class="mb-4">
+      <h3 class="h5 font-weight-bold">Nanjing University</h3>
+      <p class="mb-1">B.Sc. in Computer Science and Technology <span class="text-muted">· Sep 2022–Jun 2026</span></p>
+      <p>GPA: 4.55/5.00 · Average Score: 91/100</p>
+    </div>
+  </section>
+{% endunless %}
 
 <section class="mt-4" aria-labelledby="publications-and-preprints">
   <h2 id="publications-and-preprints">Publications and Preprints</h2>

@@ -20,4 +20,4 @@ I received my Bachelor's degree at Nanjing University.
 
 My email is: [yifengliu@ucsb.edu](mailto:yifengliu@ucsb.edu)
 
-{% include academic_cv.liquid %}
+{% include academic_cv.liquid show_education=false %}
