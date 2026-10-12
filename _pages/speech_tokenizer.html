@@ -93,7 +93,7 @@ sitemap: false
               <h3 id="{{ group.id | escape }}-{{ role }}-title">{{ role_title }}</h3>
               <p class="st-clip-label">{{ clip.label | escape }}</p>
               <p class="st-audio-meta">
-                {{ clip.duration }} 秒 <span aria-hidden="true">·</span> {{ clip.sampleRate | divided_by: 1000.0 }} kHz
+                {{ clip.duration | round: 2 }} 秒 <span aria-hidden="true">·</span> {{ clip.sampleRate | divided_by: 1000.0 }} kHz
                 <span aria-hidden="true">·</span> {% if clip.channels == 1 %}单声道{% else %}{{ clip.channels }} 声道{% endif %}
               </p>
               <audio controls preload="metadata" data-role="{{ role }}" aria-label="{{ group.title | escape }}，{{ role_title }}">
