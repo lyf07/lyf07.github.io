@@ -14,13 +14,10 @@ latest_posts:
   enabled: false
 ---
 
-Hi, welcome to my website!
+Hi, I'm Yifeng Liu (刘奕风), a first year CS Ph.D student at UCSB, advised by [Shiyu Chang](https://code-terminator.github.io/). I also work closely with [Dr. Yang Zhang](https://mitibm.mit.edu/people/yang-zhang/).
 
-I'm Yifeng Liu (刘奕风), a Ph.D. student in Computer Science at the University of California, Santa Barbara, advised by Shiyu Chang.
-I received my B.Sc. in Computer Science and Technology from Nanjing University in June 2026.
+I received my Bachelor's degree at Nanjing University.
 
-I'm interested in LLMs, especially in their **reasoning**, **multilinguality** and **agentic ability.**
-
-You can reach me at [yifengliu@ucsb.edu](mailto:yifengliu@ucsb.edu).
+My email is: [yifengliu@ucsb.edu](mailto:yifengliu@ucsb.edu)
 
 {% include academic_cv.liquid %}
