@@ -35,6 +35,13 @@ Every group must have these three audio roles, in this order:
 All three original WAV files are required. Imported files are copied byte for
 byte, and their SHA-256 hashes identify the specific audio being compared.
 
+Each audio clip displays its `dataset` beneath its name. Set it explicitly for
+every imported clip (currently `EARS` or `YODAS`). Optional `datasetLabel` changes
+the default 数据集来源 heading; `datasetNote` identifies generated references or
+synthesis results. The angry male reference belongs to the YODAS comparison and
+is synthetic, so label it 关联数据集：YODAS · 合成音色参考 rather than as a raw recording.
+The opening explanation links to the [official EARS repository](https://github.com/facebookresearch/ears_dataset).
+
 ## Add a comparison group
 
 Run from the repository root, using a new stable group ID:
