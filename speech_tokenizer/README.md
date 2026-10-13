@@ -82,11 +82,11 @@ The opening explanation links to the [official EARS repository](https://github.c
 A compact table directly below the Speech Tokenizer heading shows only frame
 rate and codebook size:
 
-| Tokenizer | Frame rate | Codebook size |
-| --- | --- | --- |
-| Kanade | 25 Hz | 12,800 |
-| CosyVoice 3 | 25 Hz | 6,561 |
-| MioCodec v2 | 25 Hz | 12,800 |
+| Tokenizer   | Frame rate | Codebook size |
+| ----------- | ---------- | ------------- |
+| Kanade      | 25 Hz      | 12,800        |
+| CosyVoice 3 | 25 Hz      | 6,561         |
+| MioCodec v2 | 25 Hz      | 12,800        |
 
 Values match the checkpoint configurations for
 [`frothywater/kanade-25hz-clean`](https://huggingface.co/frothywater/kanade-25hz-clean/blob/main/config.yaml),
