@@ -369,6 +369,192 @@
         "与 Kanade 使用完全相同的音色参考和 speech token来源音频，可通过 tokenizer 选择框切换试听。",
         "Fun-CosyVoice3-0.5B-2512：新闻播报提取 speech tokens；男声参考提供 speaker embedding、prompt tokens 与声学特征，使用官方 voice conversion 解码。"
       ]
+    },
+    {
+      "id": "y7wnqdhoc2k-angry-male-miocodec-v2",
+      "title": "愤怒成年男声 × 新闻播报",
+      "description": "使用 MioCodec v2 提取源音频的 speech tokens 与参考音频的 global embedding（音色及声学条件），结合两者合成语音。",
+      "method": "MioCodec v2",
+      "tags": ["愤怒成年男声", "新闻播报"],
+      "audio": {
+        "timbre": {
+          "src": "assets/audio/speech_tokenizer/y7wnqdhoc2k-angry-male-miocodec-v2/timbre.wav",
+          "label": "愤怒成年男声",
+          "duration": 22.72,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "87db7c052b4eb9ea36200f2d707806a7d8e6f8141783dbd65cb1e68f78c16e3e",
+          "dataset": "YODAS",
+          "datasetLabel": "关联数据集",
+          "datasetNote": "合成音色参考"
+        },
+        "content": {
+          "src": "assets/audio/speech_tokenizer/y7wnqdhoc2k-angry-male-miocodec-v2/content.wav",
+          "label": "原始新闻播报",
+          "duration": 30.0,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "10f0bf7768a17fad68e4c0371560febd9a0494d54c786e8b9771d84135ec3050",
+          "dataset": "YODAS"
+        },
+        "synthesis": {
+          "src": "assets/audio/speech_tokenizer/y7wnqdhoc2k-angry-male-miocodec-v2/synthesis.wav",
+          "label": "MioCodec v2 · 参考声音条件 + speech tokens",
+          "duration": 30.0,
+          "sampleRate": 44100,
+          "channels": 1,
+          "sha256": "b6697bf03cbe58af4a4f9eb085227818202f014a7e869b4bced14b442baf8518",
+          "dataset": "YODAS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "MioCodec v2 合成结果"
+        }
+      },
+      "transcripts": {
+        "timbre": "Are you kidding me? It’s two in the morning, and you’re still blasting music! I’ve asked you three times to turn it down. Three times! I have to be up in four hours, and I haven’t slept at all. And don’t tell me to calm down. I was calm the first time I asked! This is my apartment too, and I shouldn’t have to beg for some peace and quiet. Turn the music off and tell your friends to go home. I’m done asking.",
+        "content": "Welcome to All Hands Update. I'm Petty Officer Ashley Hedrick with your headlines from Around the Fleet. Sailors aboard USS Jason Dunham recently took part in a two-week sleep study. The goal is to find the best watch rotation to optimize the amount of sleep sailors are getting so that they can be alert on watch. The Navy will use the results to provide guidance to commanding officers around the fleet. We wanted to finish out 2012 by taking a moment to recognize the people behind the scenes that make All Hands Update possible."
+      },
+      "notes": [
+        "音色参考使用争执台词；合成结果表达 speech token来源中的新闻播报文本。",
+        "Aratako/MioCodec-25Hz-44.1kHz-v2：源音频提供 speech tokens，音色参考提供 global embedding（声音及声学条件），通过内置解码器生成 44.1 kHz 音频。"
+      ]
+    },
+    {
+      "id": "ears-pair-1-miocodec-v2",
+      "title": "EARS 第 1 组：爱慕（adoration）音色 × 疼痛（pain）speech tokens",
+      "description": "使用 MioCodec v2 提取源音频的 speech tokens 与参考音频的 global embedding（音色及声学条件），结合两者合成语音。",
+      "method": "MioCodec v2",
+      "tags": ["EARS", "第 1 组"],
+      "audio": {
+        "timbre": {
+          "src": "assets/audio/speech_tokenizer/ears-pair-1-miocodec-v2/timbre.wav",
+          "label": "p001 · 爱慕（adoration） · freeform",
+          "duration": 15.701333333333332,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "33d4a16bf72ff3063b5ecfa173ac3a9f6a5f6bdad13721274466e201e22f60fe",
+          "dataset": "EARS"
+        },
+        "content": {
+          "src": "assets/audio/speech_tokenizer/ears-pair-1-miocodec-v2/content.wav",
+          "label": "p002 · 疼痛（pain） · freeform",
+          "duration": 12.978229166666667,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "3144cfaab3540a90324cc4744c55d9f1134c0607e25683fca4835eaab6b68f1b",
+          "dataset": "EARS"
+        },
+        "synthesis": {
+          "src": "assets/audio/speech_tokenizer/ears-pair-1-miocodec-v2/synthesis.wav",
+          "label": "MioCodec v2 · 参考声音条件 + speech tokens",
+          "duration": 12.96,
+          "sampleRate": 44100,
+          "channels": 1,
+          "sha256": "8c49bea4f2f1b54bd4a6f54bb319631d77f6f13342499f3c8caa80f85eca5d60",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "MioCodec v2 合成结果"
+        }
+      },
+      "transcripts": {
+        "timbre": "",
+        "content": ""
+      },
+      "notes": [
+        "情绪名称来自原始录音文件名，用于标识输入；合成中的情绪表现请通过试听比较。",
+        "Aratako/MioCodec-25Hz-44.1kHz-v2：源音频提供 speech tokens，音色参考提供 global embedding（声音及声学条件），通过内置解码器生成 44.1 kHz 音频。"
+      ]
+    },
+    {
+      "id": "ears-pair-2-miocodec-v2",
+      "title": "EARS 第 2 组：悲伤（sadness）音色 × 愤怒（anger）speech tokens",
+      "description": "使用 MioCodec v2 提取源音频的 speech tokens 与参考音频的 global embedding（音色及声学条件），结合两者合成语音。",
+      "method": "MioCodec v2",
+      "tags": ["EARS", "第 2 组"],
+      "audio": {
+        "timbre": {
+          "src": "assets/audio/speech_tokenizer/ears-pair-2-miocodec-v2/timbre.wav",
+          "label": "p001 · 悲伤（sadness） · freeform",
+          "duration": 14.964833333333333,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "21140b0f1817fbf0f6a78f49cb7cbde136812fd81546022b5c3cbe7761b8713c",
+          "dataset": "EARS"
+        },
+        "content": {
+          "src": "assets/audio/speech_tokenizer/ears-pair-2-miocodec-v2/content.wav",
+          "label": "p002 · 愤怒（anger） · freeform",
+          "duration": 12.321979166666667,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "d9dab37f7890f9509d98e8fd06b737ba9592dfe1cca93f50711c8b85a2b2535b",
+          "dataset": "EARS"
+        },
+        "synthesis": {
+          "src": "assets/audio/speech_tokenizer/ears-pair-2-miocodec-v2/synthesis.wav",
+          "label": "MioCodec v2 · 参考声音条件 + speech tokens",
+          "duration": 12.32,
+          "sampleRate": 44100,
+          "channels": 1,
+          "sha256": "e38680b59ce3ec925c2723a4dfdbf3720efbe945ea7f826b10d55f054e64f02e",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "MioCodec v2 合成结果"
+        }
+      },
+      "transcripts": {
+        "timbre": "",
+        "content": ""
+      },
+      "notes": [
+        "情绪名称来自原始录音文件名，用于标识输入；合成中的情绪表现请通过试听比较。",
+        "Aratako/MioCodec-25Hz-44.1kHz-v2：源音频提供 speech tokens，音色参考提供 global embedding（声音及声学条件），通过内置解码器生成 44.1 kHz 音频。"
+      ]
+    },
+    {
+      "id": "ears-pair-3-miocodec-v2",
+      "title": "EARS 第 3 组：失望（disappointment）音色 × 渴望（desire）speech tokens",
+      "description": "使用 MioCodec v2 提取源音频的 speech tokens 与参考音频的 global embedding（音色及声学条件），结合两者合成语音。",
+      "method": "MioCodec v2",
+      "tags": ["EARS", "第 3 组"],
+      "audio": {
+        "timbre": {
+          "src": "assets/audio/speech_tokenizer/ears-pair-3-miocodec-v2/timbre.wav",
+          "label": "p002 · 失望（disappointment） · freeform",
+          "duration": 17.597020833333332,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "56691a9ccc8ab797ebd8215e5f49061814683837f629468d91850d283413c614",
+          "dataset": "EARS"
+        },
+        "content": {
+          "src": "assets/audio/speech_tokenizer/ears-pair-3-miocodec-v2/content.wav",
+          "label": "p001 · 渴望（desire） · freeform",
+          "duration": 15.541916666666667,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "181e670651f361fcb1c833f821f8a832e6321a98fee1bb7fbadbb2790574056c",
+          "dataset": "EARS"
+        },
+        "synthesis": {
+          "src": "assets/audio/speech_tokenizer/ears-pair-3-miocodec-v2/synthesis.wav",
+          "label": "MioCodec v2 · 参考声音条件 + speech tokens",
+          "duration": 15.54,
+          "sampleRate": 44100,
+          "channels": 1,
+          "sha256": "ee6503662051d31c06f193be9e5b49a4a60956671b4f97466dfee1438538064c",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "MioCodec v2 合成结果"
+        }
+      },
+      "transcripts": {
+        "timbre": "",
+        "content": ""
+      },
+      "notes": [
+        "情绪名称来自原始录音文件名，用于标识输入；合成中的情绪表现请通过试听比较。",
+        "Aratako/MioCodec-25Hz-44.1kHz-v2：源音频提供 speech tokens，音色参考提供 global embedding（声音及声学条件），通过内置解码器生成 44.1 kHz 音频。"
+      ]
     }
   ],
   "reconstructions": [
@@ -642,6 +828,142 @@
       "notes": [
         "原始音频与音频合成视图中对比 04 的所选录音完全相同。",
         "CosyVoice 3：原始音频自身提供 speech tokens、speaker embedding、prompt tokens 与声学特征，通过 flow 与 HiFT 解码重建。"
+      ]
+    },
+    {
+      "id": "reconstruction-01-miocodec-v2",
+      "title": "新闻播报",
+      "description": "使用 MioCodec v2 提取并解码同一原始音频的 speech tokens 与 global embedding（声音及声学条件），重建 44.1 kHz 语音。",
+      "method": "MioCodec v2",
+      "tags": ["YODAS", "新闻播报"],
+      "sourceComparison": 1,
+      "audio": {
+        "original": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-01-miocodec-v2/original.wav",
+          "label": "原始新闻播报",
+          "duration": 30.0,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "10f0bf7768a17fad68e4c0371560febd9a0494d54c786e8b9771d84135ec3050",
+          "dataset": "YODAS"
+        },
+        "reconstruction": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-01-miocodec-v2/reconstruction.wav",
+          "label": "MioCodec v2 · 新闻播报重建",
+          "duration": 30.0,
+          "sampleRate": 44100,
+          "channels": 1,
+          "sha256": "e93d05b0763d6b58de10e38318d214a4cea387a76e073df1e728088b975a6cdc",
+          "dataset": "YODAS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "MioCodec v2 重建结果"
+        }
+      },
+      "notes": [
+        "原始音频与音频合成视图中对比 01 的所选录音完全相同。",
+        "Aratako/MioCodec-25Hz-44.1kHz-v2：同一原始音频的 speech tokens 与 global embedding 通过内置解码器重建，输出采样率为 44.1 kHz。"
+      ]
+    },
+    {
+      "id": "reconstruction-02-miocodec-v2",
+      "title": "疼痛（pain）",
+      "description": "使用 MioCodec v2 提取并解码同一原始音频的 speech tokens 与 global embedding（声音及声学条件），重建 44.1 kHz 语音。",
+      "method": "MioCodec v2",
+      "tags": ["EARS", "疼痛（pain）"],
+      "sourceComparison": 2,
+      "audio": {
+        "original": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-02-miocodec-v2/original.wav",
+          "label": "p002 · 疼痛（pain） · freeform",
+          "duration": 12.978229166666667,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "3144cfaab3540a90324cc4744c55d9f1134c0607e25683fca4835eaab6b68f1b",
+          "dataset": "EARS"
+        },
+        "reconstruction": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-02-miocodec-v2/reconstruction.wav",
+          "label": "MioCodec v2 · 疼痛（pain）重建",
+          "duration": 12.96,
+          "sampleRate": 44100,
+          "channels": 1,
+          "sha256": "a3233b6f8145e7b9e3ca954a8dfec3905b9c46c43b8cd7cc6ad7b7c997a049f0",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "MioCodec v2 重建结果"
+        }
+      },
+      "notes": [
+        "原始音频与音频合成视图中对比 02 的所选录音完全相同。",
+        "Aratako/MioCodec-25Hz-44.1kHz-v2：同一原始音频的 speech tokens 与 global embedding 通过内置解码器重建，输出采样率为 44.1 kHz。"
+      ]
+    },
+    {
+      "id": "reconstruction-03-miocodec-v2",
+      "title": "愤怒（anger）",
+      "description": "使用 MioCodec v2 提取并解码同一原始音频的 speech tokens 与 global embedding（声音及声学条件），重建 44.1 kHz 语音。",
+      "method": "MioCodec v2",
+      "tags": ["EARS", "愤怒（anger）"],
+      "sourceComparison": 3,
+      "audio": {
+        "original": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-03-miocodec-v2/original.wav",
+          "label": "p002 · 愤怒（anger） · freeform",
+          "duration": 12.321979166666667,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "d9dab37f7890f9509d98e8fd06b737ba9592dfe1cca93f50711c8b85a2b2535b",
+          "dataset": "EARS"
+        },
+        "reconstruction": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-03-miocodec-v2/reconstruction.wav",
+          "label": "MioCodec v2 · 愤怒（anger）重建",
+          "duration": 12.32,
+          "sampleRate": 44100,
+          "channels": 1,
+          "sha256": "c53d786ba5fa7757eba6dfea1659e24bc23d5544a668e246e8b648fcbfbf487f",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "MioCodec v2 重建结果"
+        }
+      },
+      "notes": [
+        "原始音频与音频合成视图中对比 03 的所选录音完全相同。",
+        "Aratako/MioCodec-25Hz-44.1kHz-v2：同一原始音频的 speech tokens 与 global embedding 通过内置解码器重建，输出采样率为 44.1 kHz。"
+      ]
+    },
+    {
+      "id": "reconstruction-04-miocodec-v2",
+      "title": "失望（disappointment）",
+      "description": "使用 MioCodec v2 提取并解码同一原始音频的 speech tokens 与 global embedding（声音及声学条件），重建 44.1 kHz 语音。",
+      "method": "MioCodec v2",
+      "tags": ["EARS", "失望（disappointment）"],
+      "sourceComparison": 4,
+      "audio": {
+        "original": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-04-miocodec-v2/original.wav",
+          "label": "p002 · 失望（disappointment） · freeform",
+          "duration": 17.597020833333332,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "56691a9ccc8ab797ebd8215e5f49061814683837f629468d91850d283413c614",
+          "dataset": "EARS"
+        },
+        "reconstruction": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-04-miocodec-v2/reconstruction.wav",
+          "label": "MioCodec v2 · 失望（disappointment）重建",
+          "duration": 17.58,
+          "sampleRate": 44100,
+          "channels": 1,
+          "sha256": "771d81dca30f792a222907c1115d07de9b3469a8a2164901d8f430baf1a01098",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "MioCodec v2 重建结果"
+        }
+      },
+      "notes": [
+        "原始音频与音频合成视图中对比 04 的所选录音完全相同。",
+        "Aratako/MioCodec-25Hz-44.1kHz-v2：同一原始音频的 speech tokens 与 global embedding 通过内置解码器重建，输出采样率为 44.1 kHz。"
       ]
     }
   ]

@@ -27,6 +27,10 @@ the original WAV hash. Offer a prominent 重建 / 音频合成 view selector; ea
 keeps its own comparison count and method selection. Existing synthesis bookmarks
 must continue to select their view and tokenizer. Identify original-as-reference
 conditioning for CosyVoice 3 reconstruction accurately.
+MioCodec v2 reconstruction uses the same original's content tokens and global
+embedding; synthesis combines source content tokens with the reference's global
+embedding. This global embedding carries voice and acoustic conditions, so do
+not claim pure timbre isolation or perfect emotion separation.
 
 Keep these stable role keys and display order when adding or editing groups. Never
 publish an incomplete group or silently substitute a different audio file.
@@ -38,6 +42,9 @@ speech token terminology for the token source throughout the page. The
 voice-generation model is secondary and should not
 dominate titles, tags, or audio labels. Keep body text around 16px and secondary
 labels at least 14px on desktop and mobile; never shrink text to fit a narrow card.
+Keep the introduction's MioCodec v2 model link identifying the exact checkpoint
+`Aratako/MioCodec-25Hz-44.1kHz-v2` and its 44.1 kHz output rate. Allow the full
+checkpoint name to wrap on narrow screens; never hardcode the tokenizer count.
 
 Show each audio clip's dataset beneath its name using `audio.<role>.dataset`.
 Use optional `datasetLabel` and `datasetNote` to identify synthetic references

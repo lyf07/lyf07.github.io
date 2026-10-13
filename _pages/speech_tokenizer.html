@@ -1,7 +1,7 @@
 ---
 layout: null
 title: Speech Tokenizer
-description: Kanade 与 CosyVoice 3 的音频重建及音频合成试听对比
+description: Kanade、CosyVoice 3 与 MioCodec v2 的音频重建及音频合成试听对比
 permalink: /speech_tokenizer/
 nav: false
 sitemap: false
@@ -14,7 +14,10 @@ sitemap: false
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="color-scheme" content="dark" />
-    <meta name="description" content="选择 Kanade 或 CosyVoice 3，对比原始音频与重建结果，或试听音色参考与 speech tokens 组合的音频合成结果。" />
+    <meta
+      name="description"
+      content="选择 Kanade、CosyVoice 3 或 MioCodec v2，对比原始音频与重建结果，或试听音色参考与 speech tokens 组合的音频合成结果。"
+    />
     <title>Speech Tokenizer · Audio Comparisons</title>
     <link
       rel="icon"
@@ -40,6 +43,12 @@ sitemap: false
           <p class="st-lead st-tokenizer-summary">
             当前有 {{ tokenizer_names | size }} 个 tokenizer 可选择：{{ tokenizer_names | join: ' 和 ' | escape }}。
           </p>
+          <p class="st-model-note">
+            MioCodec v2 使用
+            <a href="https://huggingface.co/Aratako/MioCodec-25Hz-44.1kHz-v2" target="_blank" rel="noopener noreferrer"
+              >Aratako/MioCodec-25Hz-44.1kHz-v2 ↗</a
+            >， 输出采样率为 44.1 kHz。
+          </p>
           <p class="st-hero-note">
             选择重建，试听同一段音频提取 speech tokens 后的还原效果；选择音频合成，试听参考音色与 speech tokens 组合后的结果。每组都可切换 tokenizer。
           </p>
@@ -53,7 +62,7 @@ sitemap: false
           <div
             class="st-flow st-reconstruction-flow"
             data-mode-context="reconstruction"
-            aria-label="从原始音频提取 speech tokens，再用原始音频自身的音色条件重建语音"
+            aria-label="从原始音频提取 speech tokens，再用原始音频自身的声音条件重建语音"
           >
             <div class="st-flow-item st-timbre"><span>01 / ORIGINAL</span><strong>原始音频</strong></div>
             <span class="st-flow-symbol" aria-hidden="true">→</span>
@@ -122,7 +131,7 @@ sitemap: false
           <header class="st-panel-heading">
             <h2 id="st-reconstruction-heading">音频重建</h2>
             <p>
-              每组比较原始音频与重建后的音频。speech tokens 和音色条件均来自同一段原始音频；CosyVoice 3 使用原始音频作为自身音色参考，不输入文本。
+              每组比较原始音频与重建后的音频。speech tokens 和声音条件均来自同一段原始音频；CosyVoice 3 使用原始音频作为自身音色参考，不输入文本。
             </p>
           </header>
           {% assign seen_originals = "" %} {% assign reconstruction_index = 0 %} {% for group in site.data.speech_tokenizer.reconstructions %} {%

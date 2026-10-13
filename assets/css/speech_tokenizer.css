@@ -892,17 +892,23 @@ select {
   }
 }
 
-.st-dataset-note {
+.st-dataset-note,
+.st-model-note {
   max-width: 460px;
   margin: 14px 0 0;
   color: var(--st-muted);
   font-size: 16px;
   line-height: 1.8;
 }
-.st-dataset-note a {
+.st-dataset-note a,
+.st-model-note a {
   color: var(--st-timbre);
   text-decoration: underline;
   text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.st-model-note {
+  margin: 0 0 14px;
   overflow-wrap: anywhere;
 }
 .st-dataset-source {
