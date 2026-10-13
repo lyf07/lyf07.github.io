@@ -7,7 +7,7 @@ The top-level view selector offers 重建 and 音频合成. Synthesis comparison
 the original three roles below. Reconstruction entries live in the separate
 `reconstructions` array and contain exactly `audio.original` and
 `audio.reconstruction`; each original is grouped by its SHA-256 with a tokenizer
-selector for Kanade and CosyVoice 3. `sourceComparison` identifies the original
+selector for Kanade, CosyVoice 3, and MioCodec v2. `sourceComparison` identifies the original
 synthesis comparison number. Every reconstruction entry also has a stable `id`,
 `title`, `description`, `method`, `tags`, and `notes`.
 
@@ -18,6 +18,18 @@ embedding from the same original. CosyVoice 3 uses that original for both source
 speech tokens and its own speaker embedding, prompt tokens, and acoustic features,
 then runs its flow/HiFT decoder; this is reconstruction conditioned on the original
 audio, with no text or LLM generation. Do not describe it as token-only decoding.
+
+MioCodec v2 uses the exact checkpoint
+[`Aratako/MioCodec-25Hz-44.1kHz-v2`](https://huggingface.co/Aratako/MioCodec-25Hz-44.1kHz-v2),
+which the opening section identifies with a model link and its 44.1 kHz output rate.
+It produces 25 Hz content tokens with a 12,800-entry vocabulary and a 128-dimensional
+global embedding. The global embedding provides voice and acoustic conditions;
+do not describe it as isolated timbre or claim perfect separation of emotion.
+Reconstruction uses the content tokens and global embedding extracted from the
+same original. Synthesis combines the source audio's content tokens with the
+reference audio's global embedding. Its integrated iSTFT decoder produces the
+44.1 kHz waveform without an external vocoder, text input, or LLM generation.
+Keep the archived original WAV bytes unchanged when preparing model inputs.
 
 The default view is reconstruction. Old synthesis anchors reveal synthesis and
 select their original tokenizer; reconstruction anchors reveal reconstruction.
@@ -31,7 +43,8 @@ sitemap, and asks search engines not to index it. Keep these settings when addin
 groups; do not introduce a homepage link.
 
 The opening section states the available tokenizer count and names, derived from
-the manifest's unique `method` values (currently Kanade and CosyVoice 3).
+the manifest's unique `method` values across synthesis and reconstruction entries
+(currently Kanade, CosyVoice 3, and MioCodec v2).
 Each comparison number is paired with a prominent tokenizer badge. The `method`
 field names the actual speech tokenizer used for that group (for example, Kanade),
 not the model used to generate its reference voice. Keep ordinary text at roughly
