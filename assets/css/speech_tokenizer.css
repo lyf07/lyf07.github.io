@@ -1048,3 +1048,36 @@ select {
     white-space: normal;
   }
 }
+
+.st-hero-specs {
+  width: 100%;
+  max-width: 460px;
+  margin: 24px 0 20px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.st-hero-specs th,
+.st-hero-specs td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--st-border);
+}
+.st-hero-specs th:first-child {
+  padding-left: 0;
+}
+.st-hero-specs thead th {
+  color: var(--st-muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+.st-hero-specs tbody th {
+  font-weight: 550;
+}
+.st-hero-specs td {
+  color: var(--st-timbre);
+  white-space: nowrap;
+}
+.st-hero-specs + .st-tokenizer-summary {
+  margin-top: 0;
+}

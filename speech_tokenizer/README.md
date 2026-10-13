@@ -77,6 +77,23 @@ synthesis results. The angry male reference belongs to the YODAS comparison and
 is synthetic, so label it 关联数据集：YODAS · 合成音色参考 rather than as a raw recording.
 The opening explanation links to the [official EARS repository](https://github.com/facebookresearch/ears_dataset).
 
+## Tokenizer specifications
+
+A compact table directly below the Speech Tokenizer heading shows only frame
+rate and codebook size:
+
+| Tokenizer | Frame rate | Codebook size |
+| --- | --- | --- |
+| Kanade | 25 Hz | 12,800 |
+| CosyVoice 3 | 25 Hz | 6,561 |
+| MioCodec v2 | 25 Hz | 12,800 |
+
+Values match the checkpoint configurations for
+[`frothywater/kanade-25hz-clean`](https://huggingface.co/frothywater/kanade-25hz-clean/blob/main/config.yaml),
+[`FunAudioLLM/Fun-CosyVoice3-0.5B-2512`](https://huggingface.co/FunAudioLLM/Fun-CosyVoice3-0.5B-2512/blob/main/cosyvoice3.yaml),
+and [`Aratako/MioCodec-25Hz-44.1kHz-v2`](https://huggingface.co/Aratako/MioCodec-25Hz-44.1kHz-v2/blob/main/config.yaml).
+Update the table when changing the checkpoints.
+
 ## Add a comparison group
 
 Run from the repository root, using a new stable group ID:
