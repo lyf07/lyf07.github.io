@@ -8,6 +8,8 @@ It is intentionally excluded from the main site's navigation, site search, and
 sitemap, and asks search engines not to index it. Keep these settings when adding
 groups; do not introduce a homepage link.
 
+The opening section states the available tokenizer count and names, derived from
+the manifest's unique `method` values (currently Kanade and CosyVoice 3).
 Each comparison number is paired with a prominent tokenizer badge. The `method`
 field names the actual speech tokenizer used for that group (for example, Kanade),
 not the model used to generate its reference voice. Keep ordinary text at roughly
@@ -27,7 +29,7 @@ Every group must have these three audio roles, in this order:
 | Role key    | Page label     | Purpose                                            |
 | ----------- | -------------- | -------------------------------------------------- |
 | `timbre`    | 提音色的音频   | Reference audio used to extract speaker timbre     |
-| `content`   | 提内容的音频   | Source audio used to extract speech/content tokens |
+| `content`   | 提取音频token  | Source audio used to extract speech tokens         |
 | `synthesis` | 合成之后的音频 | Speech reconstructed from those two features       |
 
 All three original WAV files are required. Imported files are copied byte for
@@ -40,8 +42,8 @@ Run from the repository root, using a new stable group ID:
 ```sh
 python3 _scripts/add_speech_tokenizer_group.py \
   --id example-002 \
-  --title "第二组：音色与内容组合" \
-  --description "比较参考音色、内容源与重建语音。" \
+  --title "第二组：音色与 speech tokens 组合" \
+  --description "比较参考音色、speech token来源与重建语音。" \
   --method Kanade \
   --tag English \
   --timbre /path/to/timbre-reference.wav \
@@ -73,8 +75,8 @@ numbers, underscores, and hyphens and must be unique. Every group has:
 ```json
 {
   "id": "example-002",
-  "title": "第二组：音色与内容组合",
-  "description": "比较参考音色、内容源与重建语音。",
+  "title": "第二组：音色与 speech tokens 组合",
+  "description": "比较参考音色、speech token来源与重建语音。",
   "method": "Kanade",
   "tags": ["English"],
   "audio": {
@@ -88,7 +90,7 @@ numbers, underscores, and hyphens and must be unique. Every group has:
     },
     "content": {
       "src": "assets/audio/speech_tokenizer/example-002/content.wav",
-      "label": "提内容的音频",
+      "label": "提取音频token",
       "duration": 30.0,
       "sampleRate": 24000,
       "channels": 1,
