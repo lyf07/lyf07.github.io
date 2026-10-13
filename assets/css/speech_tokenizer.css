@@ -891,3 +891,24 @@ select {
     padding: 14px 8px;
   }
 }
+
+.st-dataset-note {
+  max-width: 460px;
+  margin: 14px 0 0;
+  color: var(--st-muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+.st-dataset-note a {
+  color: var(--st-timbre);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.st-dataset-source {
+  margin: 4px 0 0;
+  color: var(--st-muted);
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}

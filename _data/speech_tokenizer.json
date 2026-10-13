@@ -14,7 +14,10 @@
           "duration": 22.72,
           "sampleRate": 24000,
           "channels": 1,
-          "sha256": "87db7c052b4eb9ea36200f2d707806a7d8e6f8141783dbd65cb1e68f78c16e3e"
+          "sha256": "87db7c052b4eb9ea36200f2d707806a7d8e6f8141783dbd65cb1e68f78c16e3e",
+          "dataset": "YODAS",
+          "datasetLabel": "关联数据集",
+          "datasetNote": "合成音色参考"
         },
         "content": {
           "src": "assets/audio/speech_tokenizer/y7wnqdhoc2k-angry-male/content.wav",
@@ -22,7 +25,8 @@
           "duration": 30.0,
           "sampleRate": 24000,
           "channels": 1,
-          "sha256": "10f0bf7768a17fad68e4c0371560febd9a0494d54c786e8b9771d84135ec3050"
+          "sha256": "10f0bf7768a17fad68e4c0371560febd9a0494d54c786e8b9771d84135ec3050",
+          "dataset": "YODAS"
         },
         "synthesis": {
           "src": "assets/audio/speech_tokenizer/y7wnqdhoc2k-angry-male/synthesis.wav",
@@ -30,7 +34,10 @@
           "duration": 30.0,
           "sampleRate": 24000,
           "channels": 1,
-          "sha256": "2e343d4eb1272b3b983a0d8f173f900fa60b83e701abee0c274e981aefb1fdb2"
+          "sha256": "2e343d4eb1272b3b983a0d8f173f900fa60b83e701abee0c274e981aefb1fdb2",
+          "dataset": "YODAS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "Kanade 合成结果"
         }
       },
       "transcripts": {
@@ -52,7 +59,8 @@
           "duration": 15.701333333333332,
           "sampleRate": 48000,
           "channels": 1,
-          "sha256": "33d4a16bf72ff3063b5ecfa173ac3a9f6a5f6bdad13721274466e201e22f60fe"
+          "sha256": "33d4a16bf72ff3063b5ecfa173ac3a9f6a5f6bdad13721274466e201e22f60fe",
+          "dataset": "EARS"
         },
         "content": {
           "src": "assets/audio/speech_tokenizer/ears-pair-1-kanade/content.wav",
@@ -60,7 +68,8 @@
           "duration": 12.978229166666667,
           "sampleRate": 48000,
           "channels": 1,
-          "sha256": "3144cfaab3540a90324cc4744c55d9f1134c0607e25683fca4835eaab6b68f1b"
+          "sha256": "3144cfaab3540a90324cc4744c55d9f1134c0607e25683fca4835eaab6b68f1b",
+          "dataset": "EARS"
         },
         "synthesis": {
           "src": "assets/audio/speech_tokenizer/ears-pair-1-kanade/synthesis.wav",
@@ -68,7 +77,10 @@
           "duration": 12.96,
           "sampleRate": 24000,
           "channels": 1,
-          "sha256": "0ba406fe14b80fc14316f15dfdea7fcdf051ca2d654ccb5eecd99b14d693fb01"
+          "sha256": "0ba406fe14b80fc14316f15dfdea7fcdf051ca2d654ccb5eecd99b14d693fb01",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "Kanade 合成结果"
         }
       },
       "transcripts": {
@@ -93,7 +105,8 @@
           "duration": 15.701333333333332,
           "sampleRate": 48000,
           "channels": 1,
-          "sha256": "33d4a16bf72ff3063b5ecfa173ac3a9f6a5f6bdad13721274466e201e22f60fe"
+          "sha256": "33d4a16bf72ff3063b5ecfa173ac3a9f6a5f6bdad13721274466e201e22f60fe",
+          "dataset": "EARS"
         },
         "content": {
           "src": "assets/audio/speech_tokenizer/ears-pair-1-cosyvoice3/content.wav",
@@ -101,7 +114,8 @@
           "duration": 12.978229166666667,
           "sampleRate": 48000,
           "channels": 1,
-          "sha256": "3144cfaab3540a90324cc4744c55d9f1134c0607e25683fca4835eaab6b68f1b"
+          "sha256": "3144cfaab3540a90324cc4744c55d9f1134c0607e25683fca4835eaab6b68f1b",
+          "dataset": "EARS"
         },
         "synthesis": {
           "src": "assets/audio/speech_tokenizer/ears-pair-1-cosyvoice3/synthesis.wav",
@@ -109,7 +123,10 @@
           "duration": 13.02,
           "sampleRate": 24000,
           "channels": 1,
-          "sha256": "598cf590136d46aa5898c4597ed1a4ec22a5750b3977cc58f3ae640f030a84c0"
+          "sha256": "598cf590136d46aa5898c4597ed1a4ec22a5750b3977cc58f3ae640f030a84c0",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "CosyVoice 3 合成结果"
         }
       },
       "transcripts": {
@@ -134,7 +151,8 @@
           "duration": 14.964833333333333,
           "sampleRate": 48000,
           "channels": 1,
-          "sha256": "21140b0f1817fbf0f6a78f49cb7cbde136812fd81546022b5c3cbe7761b8713c"
+          "sha256": "21140b0f1817fbf0f6a78f49cb7cbde136812fd81546022b5c3cbe7761b8713c",
+          "dataset": "EARS"
         },
         "content": {
           "src": "assets/audio/speech_tokenizer/ears-pair-2-kanade/content.wav",
@@ -142,7 +160,8 @@
           "duration": 12.321979166666667,
           "sampleRate": 48000,
           "channels": 1,
-          "sha256": "d9dab37f7890f9509d98e8fd06b737ba9592dfe1cca93f50711c8b85a2b2535b"
+          "sha256": "d9dab37f7890f9509d98e8fd06b737ba9592dfe1cca93f50711c8b85a2b2535b",
+          "dataset": "EARS"
         },
         "synthesis": {
           "src": "assets/audio/speech_tokenizer/ears-pair-2-kanade/synthesis.wav",
@@ -150,7 +169,10 @@
           "duration": 12.32,
           "sampleRate": 24000,
           "channels": 1,
-          "sha256": "eaf0d42220bb8bf1282e8805da2722ac1179795762d2e12fbc9b84b58a2f07e0"
+          "sha256": "eaf0d42220bb8bf1282e8805da2722ac1179795762d2e12fbc9b84b58a2f07e0",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "Kanade 合成结果"
         }
       },
       "transcripts": {
@@ -175,7 +197,8 @@
           "duration": 14.964833333333333,
           "sampleRate": 48000,
           "channels": 1,
-          "sha256": "21140b0f1817fbf0f6a78f49cb7cbde136812fd81546022b5c3cbe7761b8713c"
+          "sha256": "21140b0f1817fbf0f6a78f49cb7cbde136812fd81546022b5c3cbe7761b8713c",
+          "dataset": "EARS"
         },
         "content": {
           "src": "assets/audio/speech_tokenizer/ears-pair-2-cosyvoice3/content.wav",
@@ -183,7 +206,8 @@
           "duration": 12.321979166666667,
           "sampleRate": 48000,
           "channels": 1,
-          "sha256": "d9dab37f7890f9509d98e8fd06b737ba9592dfe1cca93f50711c8b85a2b2535b"
+          "sha256": "d9dab37f7890f9509d98e8fd06b737ba9592dfe1cca93f50711c8b85a2b2535b",
+          "dataset": "EARS"
         },
         "synthesis": {
           "src": "assets/audio/speech_tokenizer/ears-pair-2-cosyvoice3/synthesis.wav",
@@ -191,7 +215,10 @@
           "duration": 12.32,
           "sampleRate": 24000,
           "channels": 1,
-          "sha256": "260a169203d5fb69322f4d26dea12e8b41927c1894b8f4d71c5280c4fe9606fd"
+          "sha256": "260a169203d5fb69322f4d26dea12e8b41927c1894b8f4d71c5280c4fe9606fd",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "CosyVoice 3 合成结果"
         }
       },
       "transcripts": {
@@ -216,7 +243,8 @@
           "duration": 17.597020833333332,
           "sampleRate": 48000,
           "channels": 1,
-          "sha256": "56691a9ccc8ab797ebd8215e5f49061814683837f629468d91850d283413c614"
+          "sha256": "56691a9ccc8ab797ebd8215e5f49061814683837f629468d91850d283413c614",
+          "dataset": "EARS"
         },
         "content": {
           "src": "assets/audio/speech_tokenizer/ears-pair-3-kanade/content.wav",
@@ -224,7 +252,8 @@
           "duration": 15.541916666666667,
           "sampleRate": 48000,
           "channels": 1,
-          "sha256": "181e670651f361fcb1c833f821f8a832e6321a98fee1bb7fbadbb2790574056c"
+          "sha256": "181e670651f361fcb1c833f821f8a832e6321a98fee1bb7fbadbb2790574056c",
+          "dataset": "EARS"
         },
         "synthesis": {
           "src": "assets/audio/speech_tokenizer/ears-pair-3-kanade/synthesis.wav",
@@ -232,7 +261,10 @@
           "duration": 15.54,
           "sampleRate": 24000,
           "channels": 1,
-          "sha256": "d360dd72129a8bd517e4e60d5b2d15b871e77a0477225a01c8e0b5dbf6554530"
+          "sha256": "d360dd72129a8bd517e4e60d5b2d15b871e77a0477225a01c8e0b5dbf6554530",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "Kanade 合成结果"
         }
       },
       "transcripts": {
@@ -257,7 +289,8 @@
           "duration": 17.597020833333332,
           "sampleRate": 48000,
           "channels": 1,
-          "sha256": "56691a9ccc8ab797ebd8215e5f49061814683837f629468d91850d283413c614"
+          "sha256": "56691a9ccc8ab797ebd8215e5f49061814683837f629468d91850d283413c614",
+          "dataset": "EARS"
         },
         "content": {
           "src": "assets/audio/speech_tokenizer/ears-pair-3-cosyvoice3/content.wav",
@@ -265,7 +298,8 @@
           "duration": 15.541916666666667,
           "sampleRate": 48000,
           "channels": 1,
-          "sha256": "181e670651f361fcb1c833f821f8a832e6321a98fee1bb7fbadbb2790574056c"
+          "sha256": "181e670651f361fcb1c833f821f8a832e6321a98fee1bb7fbadbb2790574056c",
+          "dataset": "EARS"
         },
         "synthesis": {
           "src": "assets/audio/speech_tokenizer/ears-pair-3-cosyvoice3/synthesis.wav",
@@ -273,7 +307,10 @@
           "duration": 15.58,
           "sampleRate": 24000,
           "channels": 1,
-          "sha256": "6dad6f30c00b6b85df90ec25f8384d36fa634aad7acefed8c94e33c047e28712"
+          "sha256": "6dad6f30c00b6b85df90ec25f8384d36fa634aad7acefed8c94e33c047e28712",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "CosyVoice 3 合成结果"
         }
       },
       "transcripts": {
@@ -298,7 +335,10 @@
           "duration": 22.72,
           "sampleRate": 24000,
           "channels": 1,
-          "sha256": "87db7c052b4eb9ea36200f2d707806a7d8e6f8141783dbd65cb1e68f78c16e3e"
+          "sha256": "87db7c052b4eb9ea36200f2d707806a7d8e6f8141783dbd65cb1e68f78c16e3e",
+          "dataset": "YODAS",
+          "datasetLabel": "关联数据集",
+          "datasetNote": "合成音色参考"
         },
         "content": {
           "src": "assets/audio/speech_tokenizer/y7wnqdhoc2k-angry-male-cosyvoice3/content.wav",
@@ -306,7 +346,8 @@
           "duration": 30.0,
           "sampleRate": 24000,
           "channels": 1,
-          "sha256": "10f0bf7768a17fad68e4c0371560febd9a0494d54c786e8b9771d84135ec3050"
+          "sha256": "10f0bf7768a17fad68e4c0371560febd9a0494d54c786e8b9771d84135ec3050",
+          "dataset": "YODAS"
         },
         "synthesis": {
           "src": "assets/audio/speech_tokenizer/y7wnqdhoc2k-angry-male-cosyvoice3/synthesis.wav",
@@ -314,7 +355,10 @@
           "duration": 30.0,
           "sampleRate": 24000,
           "channels": 1,
-          "sha256": "735c010b02b136e2304d5da825b47fec6d678b032e83835f600d544bf1902306"
+          "sha256": "735c010b02b136e2304d5da825b47fec6d678b032e83835f600d544bf1902306",
+          "dataset": "YODAS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "CosyVoice 3 合成结果"
         }
       },
       "transcripts": {

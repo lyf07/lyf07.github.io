@@ -30,6 +30,12 @@ voice-generation model is secondary and should not
 dominate titles, tags, or audio labels. Keep body text around 16px and secondary
 labels at least 14px on desktop and mobile; never shrink text to fit a narrow card.
 
+Show each audio clip's dataset beneath its name using `audio.<role>.dataset`.
+Use optional `datasetLabel` and `datasetNote` to identify synthetic references
+and reconstruction results accurately. The opening explanation must identify
+EARS and link to https://github.com/facebookresearch/ears_dataset; distinguish
+the YODAS news comparison and its synthetic timbre reference.
+
 Use `_data/speech_tokenizer.json` as the single group manifest. Each audio entry
 must specify `src`, `label`, `duration`, `sampleRate`, `channels`, and `sha256`.
 Store the three files at `assets/audio/speech_tokenizer/<group-id>/<role>.wav`.

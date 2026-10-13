@@ -40,6 +40,11 @@ sitemap: false
             当前有 {{ tokenizer_names | size }} 个 tokenizer 可选择：{{ tokenizer_names | join: ' 和 ' | escape }}。
           </p>
           <p class="st-hero-note">从参考声音提取音色，与源音频提取的 speech tokens 结合，再听合成后的结果。可在每组对比中选择 tokenizer。</p>
+          <p class="st-dataset-note">
+            情绪录音来自
+            <a href="https://github.com/facebookresearch/ears_dataset" target="_blank" rel="noopener noreferrer">EARS 数据集及官方仓库 ↗</a>
+            （Expressive Anechoic Recordings of Speech）。对比 01 的新闻播报来自 YODAS，音色参考为合成语音。
+          </p>
         </div>
         <div class="st-flow" aria-label="参考音色与源音频提取的 speech tokens 组合生成合成语音">
           <div class="st-flow-item st-timbre"><span>01 / VOICE</span><strong>音色参考</strong></div>
@@ -138,6 +143,10 @@ sitemap: false
               <h3 id="{{ group.id | escape }}-{{ role }}-title">{{ role_title }}</h3>
               <div class="st-audio-clip">
                 <p class="st-clip-label">{{ clip.label | escape }}</p>
+                <p class="st-dataset-source">
+                  {{ clip.datasetLabel | default: '数据集来源' | escape }}：{{ clip.dataset | escape }}{% if clip.datasetNote %} · {{ clip.datasetNote
+                  | escape }}{% endif %}
+                </p>
                 <p class="st-audio-meta">
                   {{ clip.duration | round: 2 }} 秒 <span aria-hidden="true">·</span> {{ clip.sampleRate | divided_by: 1000.0 }} kHz
                   <span aria-hidden="true">·</span> {% if clip.channels == 1 %}单声道{% else %}{{ clip.channels }} 声道{% endif %}
@@ -163,6 +172,10 @@ sitemap: false
               "" %} {% if candidate.id != group.id %} {% assign variant_hidden = "hidden" %} {% endif %}
               <div class="st-audio-clip st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" {{ variant_hidden }}>
                 <p class="st-clip-label">{{ clip.label | escape }}</p>
+                <p class="st-dataset-source">
+                  {{ clip.datasetLabel | default: '数据集来源' | escape }}：{{ clip.dataset | escape }}{% if clip.datasetNote %} · {{ clip.datasetNote
+                  | escape }}{% endif %}
+                </p>
                 <p class="st-audio-meta">
                   {{ clip.duration | round: 2 }} 秒 <span aria-hidden="true">·</span> {{ clip.sampleRate | divided_by: 1000.0 }} kHz
                   <span aria-hidden="true">·</span> {% if clip.channels == 1 %}单声道{% else %}{{ clip.channels }} 声道{% endif %}
