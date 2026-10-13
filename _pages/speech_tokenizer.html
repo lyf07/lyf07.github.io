@@ -1,7 +1,7 @@
 ---
 layout: null
 title: Speech Tokenizer
-description: 音色、内容与合成语音的独立试听页
+description: 音色参考、speech token来源与合成语音的独立试听页
 permalink: /speech_tokenizer/
 nav: false
 sitemap: false
@@ -14,7 +14,7 @@ sitemap: false
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="color-scheme" content="dark" />
-    <meta name="description" content="音色参考、内容来源与合成语音的独立试听对比。" />
+    <meta name="description" content="音色参考、speech token来源与合成语音的独立试听对比。" />
     <title>Speech Tokenizer · Audio Comparisons</title>
     <link
       rel="icon"
@@ -31,17 +31,18 @@ sitemap: false
         >
         <span class="st-status"><span aria-hidden="true"></span> 独立试听页</span>
       </header>
+      {% assign tokenizer_names = site.data.speech_tokenizer.groups | map: "method" | uniq %}
       <section class="st-intro" aria-labelledby="st-page-title">
         <div class="st-hero-copy">
-          <p class="st-eyebrow">VOICE × CONTENT</p>
+          <p class="st-eyebrow">VOICE × SPEECH TOKENS</p>
           <h1 id="st-page-title">Speech<br /><em>Tokenizer.</em></h1>
-          <p class="st-lead">音色、内容与合成语音，放在一起听。</p>
-          <p class="st-hero-note">从参考声音提取音色，将源音频的内容交给它，再听合成后的结果。</p>
+          <p class="st-lead st-tokenizer-summary">当前有 {{ tokenizer_names | size }} 个 tokenizer 可选择：{{ tokenizer_names | join: ' 和 ' | escape }}。</p>
+          <p class="st-hero-note">从参考声音提取音色，与源音频提取的 speech tokens 结合，再听合成后的结果。可在每组对比中选择 tokenizer。</p>
         </div>
-        <div class="st-flow" aria-label="参考音色与源音频内容组合生成合成语音">
+        <div class="st-flow" aria-label="参考音色与源音频提取的 speech tokens 组合生成合成语音">
           <div class="st-flow-item st-timbre"><span>01 / VOICE</span><strong>音色参考</strong></div>
           <span class="st-flow-symbol" aria-hidden="true">+</span>
-          <div class="st-flow-item st-content"><span>02 / CONTENT</span><strong>内容来源</strong></div>
+          <div class="st-flow-item st-content"><span>02 / TOKENS</span><strong>speech token来源</strong></div>
           <span class="st-flow-symbol" aria-hidden="true">→</span>
           <div class="st-flow-item st-synthesis"><span>03 / OUTPUT</span><strong>合成结果</strong></div>
         </div>
@@ -60,7 +61,7 @@ sitemap: false
           <button id="st-pause-all" type="button" disabled>暂停播放</button>
         </div>
       </div>
-      <p class="st-listening-tip">每组包含音色参考、内容来源和合成结果。选择 tokenizer 切换合成结果；切换播放时，其他音频会自动暂停。</p>
+      <p class="st-listening-tip">每组包含音色参考、speech token来源和合成结果。选择 tokenizer 切换合成结果；切换播放时，其他音频会自动暂停。</p>
 
       <div id="st-groups">
         {% assign roles = "timbre,content" | split: "," %} {% assign seen_pairs = "" %} {% assign comparison_index = 0 %} {% for group in
@@ -126,8 +127,8 @@ sitemap: false
           {% endif %} {% endfor %}
           <div class="st-audio-grid">
             {% for role in roles %} {% assign clip = group.audio[role] %} {% case role %} {% when "timbre" %}{% assign role_title = "提音色的音频"
-            %}{% assign role_hint = "提供声音特征" %}{% assign role_number = "01" %} {% when "content" %}{% assign role_title = "提内容的音频" %}{%
-            assign role_hint = "提供说话内容" %}{% assign role_number = "02" %} {% endcase %}
+            %}{% assign role_hint = "提供声音特征" %}{% assign role_number = "01" %} {% when "content" %}{% assign role_title = "提取音频token" %}{%
+            assign role_hint = "speech token来源" %}{% assign role_number = "02" %} {% endcase %}
             <article class="st-audio-card st-{{ role }}" aria-labelledby="{{ group.id | escape }}-{{ role }}-title">
               <div class="st-card-topline">
                 <span class="st-role-number">{{ role_number }}</span><span class="st-role-hint">{{ role_hint }}</span>
@@ -153,7 +154,7 @@ sitemap: false
               id="{{ group.id | escape }}-synthesis"
               aria-labelledby="{{ group.id | escape }}-synthesis-title"
             >
-              <div class="st-card-topline"><span class="st-role-number">03</span><span class="st-role-hint">参考音色 + 源内容</span></div>
+              <div class="st-card-topline"><span class="st-role-number">03</span><span class="st-role-hint">参考音色 + speech tokens</span></div>
               <h3 id="{{ group.id | escape }}-synthesis-title">合成之后的音频</h3>
               {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
               candidate.audio.content.sha256 == group.audio.content.sha256 %} {% assign clip = candidate.audio.synthesis %} {% assign variant_hidden =
@@ -196,7 +197,7 @@ sitemap: false
                 </div>
                 {% endif %} {% if candidate.transcripts.content != "" %}
                 <div>
-                  <h3>内容来源文本</h3>
+                  <h3>speech token来源文本</h3>
                   <p lang="en">{{ candidate.transcripts.content | escape }}</p>
                 </div>
                 {% endif %}
@@ -210,7 +211,7 @@ sitemap: false
       </div>
       <p id="st-empty-state" class="st-empty-state" hidden>没有匹配的对比组。试试其他关键词。</p>
       <noscript><p>当前显示每组的第一个 tokenizer，音频播放器可以直接使用。切换 tokenizer、搜索和自动暂停需要启用 JavaScript。</p></noscript>
-      <footer class="st-footer"><span>Speech Tokenizer · Audio Comparisons</span><span>参考音色 / 源内容 / 合成结果</span></footer>
+      <footer class="st-footer"><span>Speech Tokenizer · Audio Comparisons</span><span>参考音色 / speech token来源 / 合成结果</span></footer>
     </main>
     <script src="{{ '/assets/js/speech_tokenizer.js' | relative_url }}" defer></script>
   </body>

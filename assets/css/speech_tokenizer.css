@@ -490,6 +490,8 @@ select {
 .st-flow-item > strong {
   font-size: 20px;
   font-weight: 550;
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 .st-flow-item.st-timbre {
   border-color: #345d58;

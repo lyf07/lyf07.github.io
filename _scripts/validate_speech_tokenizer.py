@@ -14,7 +14,7 @@ import sys
 ROLES = ("timbre", "content", "synthesis")
 LABELS = {
     "timbre": "提音色的音频",
-    "content": "提内容的音频",
+    "content": "提取音频token",
     "synthesis": "合成之后的音频",
 }
 ID_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]*\Z")
