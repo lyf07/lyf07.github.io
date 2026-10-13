@@ -6,10 +6,7 @@
       "title": "愤怒成年男声 × 新闻播报",
       "description": "使用 Kanade 提取参考男声的音色与原始新闻播报的 speech tokens，再结合两者重建语音。",
       "method": "Kanade",
-      "tags": [
-        "愤怒成年男声",
-        "新闻播报"
-      ],
+      "tags": ["愤怒成年男声", "新闻播报"],
       "audio": {
         "timbre": {
           "src": "assets/audio/speech_tokenizer/y7wnqdhoc2k-angry-male/timbre.wav",
@@ -40,19 +37,14 @@
         "timbre": "Are you kidding me? It’s two in the morning, and you’re still blasting music! I’ve asked you three times to turn it down. Three times! I have to be up in four hours, and I haven’t slept at all. And don’t tell me to calm down. I was calm the first time I asked! This is my apartment too, and I shouldn’t have to beg for some peace and quiet. Turn the music off and tell your friends to go home. I’m done asking.",
         "content": "Welcome to All Hands Update. I'm Petty Officer Ashley Hedrick with your headlines from Around the Fleet. Sailors aboard USS Jason Dunham recently took part in a two-week sleep study. The goal is to find the best watch rotation to optimize the amount of sleep sailors are getting so that they can be alert on watch. The Navy will use the results to provide guidance to commanding officers around the fleet. We wanted to finish out 2012 by taking a moment to recognize the people behind the scenes that make All Hands Update possible."
       },
-      "notes": [
-        "音色参考使用争执台词；合成结果表达 speech token来源中的新闻播报文本。"
-      ]
+      "notes": ["音色参考使用争执台词；合成结果表达 speech token来源中的新闻播报文本。"]
     },
     {
       "id": "ears-pair-1-kanade",
       "title": "EARS 第 1 组：爱慕（adoration）音色 × 疼痛（pain）speech tokens",
       "description": "第 1 组：从 p001 的 爱慕（adoration） 录音提取声音条件，从 p002 的 疼痛（pain） 录音提取 speech tokens，再结合两者合成。",
       "method": "Kanade",
-      "tags": [
-        "EARS",
-        "第 1 组"
-      ],
+      "tags": ["EARS", "第 1 组"],
       "audio": {
         "timbre": {
           "src": "assets/audio/speech_tokenizer/ears-pair-1-kanade/timbre.wav",
@@ -93,10 +85,7 @@
       "title": "EARS 第 1 组：爱慕（adoration）音色 × 疼痛（pain）speech tokens",
       "description": "第 1 组：从 p001 的 爱慕（adoration） 录音提取声音条件，从 p002 的 疼痛（pain） 录音提取 speech tokens，再结合两者合成。",
       "method": "CosyVoice 3",
-      "tags": [
-        "EARS",
-        "第 1 组"
-      ],
+      "tags": ["EARS", "第 1 组"],
       "audio": {
         "timbre": {
           "src": "assets/audio/speech_tokenizer/ears-pair-1-cosyvoice3/timbre.wav",
@@ -137,10 +126,7 @@
       "title": "EARS 第 2 组：悲伤（sadness）音色 × 愤怒（anger）speech tokens",
       "description": "第 2 组：从 p001 的 悲伤（sadness） 录音提取声音条件，从 p002 的 愤怒（anger） 录音提取 speech tokens，再结合两者合成。",
       "method": "Kanade",
-      "tags": [
-        "EARS",
-        "第 2 组"
-      ],
+      "tags": ["EARS", "第 2 组"],
       "audio": {
         "timbre": {
           "src": "assets/audio/speech_tokenizer/ears-pair-2-kanade/timbre.wav",
@@ -181,10 +167,7 @@
       "title": "EARS 第 2 组：悲伤（sadness）音色 × 愤怒（anger）speech tokens",
       "description": "第 2 组：从 p001 的 悲伤（sadness） 录音提取声音条件，从 p002 的 愤怒（anger） 录音提取 speech tokens，再结合两者合成。",
       "method": "CosyVoice 3",
-      "tags": [
-        "EARS",
-        "第 2 组"
-      ],
+      "tags": ["EARS", "第 2 组"],
       "audio": {
         "timbre": {
           "src": "assets/audio/speech_tokenizer/ears-pair-2-cosyvoice3/timbre.wav",
@@ -225,10 +208,7 @@
       "title": "EARS 第 3 组：失望（disappointment）音色 × 渴望（desire）speech tokens",
       "description": "第 3 组：从 p002 的 失望（disappointment） 录音提取声音条件，从 p001 的 渴望（desire） 录音提取 speech tokens，再结合两者合成。",
       "method": "Kanade",
-      "tags": [
-        "EARS",
-        "第 3 组"
-      ],
+      "tags": ["EARS", "第 3 组"],
       "audio": {
         "timbre": {
           "src": "assets/audio/speech_tokenizer/ears-pair-3-kanade/timbre.wav",
@@ -269,10 +249,7 @@
       "title": "EARS 第 3 组：失望（disappointment）音色 × 渴望（desire）speech tokens",
       "description": "第 3 组：从 p002 的 失望（disappointment） 录音提取声音条件，从 p001 的 渴望（desire） 录音提取 speech tokens，再结合两者合成。",
       "method": "CosyVoice 3",
-      "tags": [
-        "EARS",
-        "第 3 组"
-      ],
+      "tags": ["EARS", "第 3 组"],
       "audio": {
         "timbre": {
           "src": "assets/audio/speech_tokenizer/ears-pair-3-cosyvoice3/timbre.wav",
@@ -313,10 +290,7 @@
       "title": "愤怒成年男声 × 新闻播报",
       "description": "使用 CosyVoice 3 从原始新闻播报提取 speech tokens，以参考男声的声音条件解码合成语音。",
       "method": "CosyVoice 3",
-      "tags": [
-        "愤怒成年男声",
-        "新闻播报"
-      ],
+      "tags": ["愤怒成年男声", "新闻播报"],
       "audio": {
         "timbre": {
           "src": "assets/audio/speech_tokenizer/y7wnqdhoc2k-angry-male-cosyvoice3/timbre.wav",

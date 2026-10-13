@@ -26,11 +26,11 @@ its default tokenizer and three playable audio roles.
 
 Every group must have these three audio roles, in this order:
 
-| Role key    | Page label     | Purpose                                            |
-| ----------- | -------------- | -------------------------------------------------- |
-| `timbre`    | 提音色的音频   | Reference audio used to extract speaker timbre     |
-| `content`   | 提取音频token  | Source audio used to extract speech tokens         |
-| `synthesis` | 合成之后的音频 | Speech reconstructed from those two features       |
+| Role key    | Page label     | Purpose                                        |
+| ----------- | -------------- | ---------------------------------------------- |
+| `timbre`    | 提音色的音频   | Reference audio used to extract speaker timbre |
+| `content`   | 提取音频token  | Source audio used to extract speech tokens     |
+| `synthesis` | 合成之后的音频 | Speech reconstructed from those two features   |
 
 All three original WAV files are required. Imported files are copied byte for
 byte, and their SHA-256 hashes identify the specific audio being compared.

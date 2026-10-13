@@ -36,7 +36,9 @@ sitemap: false
         <div class="st-hero-copy">
           <p class="st-eyebrow">VOICE × SPEECH TOKENS</p>
           <h1 id="st-page-title">Speech<br /><em>Tokenizer.</em></h1>
-          <p class="st-lead st-tokenizer-summary">当前有 {{ tokenizer_names | size }} 个 tokenizer 可选择：{{ tokenizer_names | join: ' 和 ' | escape }}。</p>
+          <p class="st-lead st-tokenizer-summary">
+            当前有 {{ tokenizer_names | size }} 个 tokenizer 可选择：{{ tokenizer_names | join: ' 和 ' | escape }}。
+          </p>
           <p class="st-hero-note">从参考声音提取音色，与源音频提取的 speech tokens 结合，再听合成后的结果。可在每组对比中选择 tokenizer。</p>
         </div>
         <div class="st-flow" aria-label="参考音色与源音频提取的 speech tokens 组合生成合成语音">
