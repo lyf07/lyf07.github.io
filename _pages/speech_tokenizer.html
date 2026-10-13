@@ -1,7 +1,7 @@
 ---
 layout: null
 title: Speech Tokenizer
-description: 音色参考、speech token来源与合成语音的独立试听页
+description: Kanade 与 CosyVoice 3 的音频重建及音频合成试听对比
 permalink: /speech_tokenizer/
 nav: false
 sitemap: false
@@ -14,7 +14,7 @@ sitemap: false
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="color-scheme" content="dark" />
-    <meta name="description" content="音色参考、speech token来源与合成语音的独立试听对比。" />
+    <meta name="description" content="选择 Kanade 或 CosyVoice 3，对比原始音频与重建结果，或试听音色参考与 speech tokens 组合的音频合成结果。" />
     <title>Speech Tokenizer · Audio Comparisons</title>
     <link
       rel="icon"
@@ -31,7 +31,8 @@ sitemap: false
         >
         <span class="st-status"><span aria-hidden="true"></span> 独立试听页</span>
       </header>
-      {% assign tokenizer_names = site.data.speech_tokenizer.groups | map: "method" | uniq %}
+      {% assign all_comparisons = site.data.speech_tokenizer.groups | concat: site.data.speech_tokenizer.reconstructions %} {% assign tokenizer_names
+      = all_comparisons | map: "method" | uniq %}
       <section class="st-intro" aria-labelledby="st-page-title">
         <div class="st-hero-copy">
           <p class="st-eyebrow">VOICE × SPEECH TOKENS</p>
@@ -39,194 +40,391 @@ sitemap: false
           <p class="st-lead st-tokenizer-summary">
             当前有 {{ tokenizer_names | size }} 个 tokenizer 可选择：{{ tokenizer_names | join: ' 和 ' | escape }}。
           </p>
-          <p class="st-hero-note">从参考声音提取音色，与源音频提取的 speech tokens 结合，再听合成后的结果。可在每组对比中选择 tokenizer。</p>
+          <p class="st-hero-note">
+            选择重建，试听同一段音频提取 speech tokens 后的还原效果；选择音频合成，试听参考音色与 speech tokens 组合后的结果。每组都可切换 tokenizer。
+          </p>
           <p class="st-dataset-note">
             情绪录音来自
             <a href="https://github.com/facebookresearch/ears_dataset" target="_blank" rel="noopener noreferrer">EARS 数据集及官方仓库 ↗</a>
             （Expressive Anechoic Recordings of Speech）。对比 01 的新闻播报来自 YODAS，音色参考为合成语音。
           </p>
         </div>
-        <div class="st-flow" aria-label="参考音色与源音频提取的 speech tokens 组合生成合成语音">
-          <div class="st-flow-item st-timbre"><span>01 / VOICE</span><strong>音色参考</strong></div>
-          <span class="st-flow-symbol" aria-hidden="true">+</span>
-          <div class="st-flow-item st-content"><span>02 / TOKENS</span><strong>speech token来源</strong></div>
-          <span class="st-flow-symbol" aria-hidden="true">→</span>
-          <div class="st-flow-item st-synthesis"><span>03 / OUTPUT</span><strong>合成结果</strong></div>
+        <div class="st-flow-container">
+          <div
+            class="st-flow st-reconstruction-flow"
+            data-mode-context="reconstruction"
+            aria-label="从原始音频提取 speech tokens，再用原始音频自身的音色条件重建语音"
+          >
+            <div class="st-flow-item st-timbre"><span>01 / ORIGINAL</span><strong>原始音频</strong></div>
+            <span class="st-flow-symbol" aria-hidden="true">→</span>
+            <div class="st-flow-item st-content"><span>02 / TOKENS</span><strong>speech tokens</strong></div>
+            <span class="st-flow-symbol" aria-hidden="true">→</span>
+            <div class="st-flow-item st-synthesis"><span>03 / RECONSTRUCTION</span><strong>重建结果</strong></div>
+          </div>
+          <div class="st-flow" data-mode-context="synthesis" aria-label="参考音色与源音频提取的 speech tokens 组合生成合成语音">
+            <div class="st-flow-item st-timbre"><span>01 / VOICE</span><strong>音色参考</strong></div>
+            <span class="st-flow-symbol" aria-hidden="true">+</span>
+            <div class="st-flow-item st-content"><span>02 / TOKENS</span><strong>speech token来源</strong></div>
+            <span class="st-flow-symbol" aria-hidden="true">→</span>
+            <div class="st-flow-item st-synthesis"><span>03 / OUTPUT</span><strong>合成结果</strong></div>
+          </div>
         </div>
       </section>
 
       {% assign seen_pairs = "" %} {% assign comparison_count = 0 %} {% for group in site.data.speech_tokenizer.groups %} {% capture pair_key %}|{{
       group.audio.timbre.sha256 }}:{{ group.audio.content.sha256 }}|{% endcapture %} {% unless seen_pairs contains pair_key %} {% assign
-      comparison_count = comparison_count | plus: 1 %} {% assign seen_pairs = seen_pairs | append: pair_key %} {% endunless %} {% endfor %}
+      comparison_count = comparison_count | plus: 1 %} {% assign seen_pairs = seen_pairs | append: pair_key %} {% endunless %} {% endfor %} {% assign
+      seen_originals = "" %} {% assign reconstruction_count = 0 %} {% for group in site.data.speech_tokenizer.reconstructions %} {% capture
+      original_key %}|{{ group.audio.original.sha256 }}|{% endcapture %} {% unless seen_originals contains original_key %} {% assign
+      reconstruction_count = reconstruction_count | plus: 1 %} {% assign seen_originals = seen_originals | append: original_key %} {% endunless %} {%
+      endfor %}
+      <div class="st-mode-control">
+        <p id="st-mode-label" class="st-mode-label">选择试听类型</p>
+        <div class="st-mode-options" role="group" aria-labelledby="st-mode-label">
+          <button
+            id="st-mode-reconstruction"
+            class="st-mode-button"
+            type="button"
+            data-mode="reconstruction"
+            aria-pressed="true"
+            aria-controls="st-reconstruction-panel"
+            disabled
+          >
+            重建
+          </button>
+          <button
+            id="st-mode-synthesis"
+            class="st-mode-button"
+            type="button"
+            data-mode="synthesis"
+            aria-pressed="false"
+            aria-controls="st-synthesis-panel"
+            disabled
+          >
+            音频合成
+          </button>
+        </div>
+      </div>
       <div class="st-toolbar">
         <div class="st-search">
           <label for="st-search-input">查找对比组</label>
           <input id="st-search-input" type="search" placeholder="搜索对比组或 tokenizer" autocomplete="off" aria-controls="st-groups" />
         </div>
         <div class="st-toolbar-actions">
-          <span id="st-group-count" class="st-count" role="status">{{ comparison_count }} 组对比</span>
+          <span id="st-group-count" class="st-count" role="status">{{ reconstruction_count }} 组重建 / {{ comparison_count }} 组合成</span>
           <button id="st-pause-all" type="button" disabled>暂停播放</button>
         </div>
       </div>
-      <p class="st-listening-tip">每组包含音色参考、speech token来源和合成结果。选择 tokenizer 切换合成结果；切换播放时，其他音频会自动暂停。</p>
+      <p class="st-listening-tip">选择 tokenizer 切换结果。切换试听类型或播放其他音频时，当前播放会自动暂停。</p>
 
       <div id="st-groups">
-        {% assign roles = "timbre,content" | split: "," %} {% assign seen_pairs = "" %} {% assign comparison_index = 0 %} {% for group in
-        site.data.speech_tokenizer.groups %} {% capture pair_key %}|{{ group.audio.timbre.sha256 }}:{{ group.audio.content.sha256 }}|{% endcapture %}
-        {% unless seen_pairs contains pair_key %} {% assign seen_pairs = seen_pairs | append: pair_key %} {% assign comparison_index =
-        comparison_index | plus: 1 %} {% capture comparison_search %} {% for candidate in site.data.speech_tokenizer.groups %} {% if
-        candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and candidate.audio.content.sha256 == group.audio.content.sha256 %} {{
-        candidate.title }} {{ candidate.method }} {{ candidate.description }} {{ candidate.tags | join: ' ' }} {{ candidate.id }} {% endif %} {%
-        endfor %} {% endcapture %}
-        <section
-          class="st-group"
-          id="{{ group.id | escape }}"
-          aria-labelledby="{{ group.id | escape }}-title"
-          data-current-variant="{{ group.id | escape }}"
-          data-search="{{ comparison_search | strip | escape }}"
-        >
-          {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
-          candidate.audio.content.sha256 == group.audio.content.sha256 and candidate.id != group.id %}
-          <span class="st-variant-anchor" id="{{ candidate.id | escape }}" aria-hidden="true"></span>
-          {% endif %} {% endfor %}
-          <header class="st-group-header">
-            <div>
-              <div class="st-case-heading">
-                <p class="st-case-number">对比 {{ comparison_index | prepend: '0' | slice: -2, 2 }}</p>
-                <span class="st-tokenizer-badge" aria-label="本组使用的 tokenizer：{{ group.method | escape }}">
-                  <span class="st-tokenizer-key">Tokenizer</span>
-                  <select
-                    class="st-tokenizer-select"
-                    aria-label="{{ group.title | escape }}，选择 tokenizer"
-                    aria-controls="{{ group.id | escape }}-synthesis"
-                    disabled
-                  >
-                    {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
-                    candidate.audio.content.sha256 == group.audio.content.sha256 %}
-                    <option
-                      value="{{ candidate.id | escape }}"
-                      data-title="{{ candidate.title | escape }}"
-                      data-search="{{ candidate.title | escape }} {{ candidate.method | escape }} {{ candidate.description | escape }} {{ candidate.tags | join: ' ' | escape }} {{ candidate.id | escape }}"
-                    >
-                      {{ candidate.method | escape }}
-                    </option>
-                    {% endif %} {% endfor %}
-                  </select>
-                </span>
-              </div>
-              <h2 class="st-group-title" id="{{ group.id | escape }}-title">{{ group.title | escape }}</h2>
-              {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
-              candidate.audio.content.sha256 == group.audio.content.sha256 %} {% assign variant_hidden = "" %} {% if candidate.id != group.id %} {%
-              assign variant_hidden = "hidden" %} {% endif %}
-              <p class="st-group-description st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" {{ variant_hidden }}>
-                {{ candidate.description | escape }}
-              </p>
-              {% endif %} {% endfor %}
-            </div>
-            <a class="st-permalink" href="#{{ group.id | escape }}" aria-label="链接到 {{ group.title | escape }}">#</a>
+        <section id="st-reconstruction-panel" class="st-mode-panel" data-mode-panel="reconstruction" aria-labelledby="st-reconstruction-heading">
+          <header class="st-panel-heading">
+            <h2 id="st-reconstruction-heading">音频重建</h2>
+            <p>
+              每组比较原始音频与重建后的音频。speech tokens 和音色条件均来自同一段原始音频；CosyVoice 3 使用原始音频作为自身音色参考，不输入文本。
+            </p>
           </header>
-          {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
-          candidate.audio.content.sha256 == group.audio.content.sha256 %} {% assign variant_hidden = "" %} {% if candidate.id != group.id %} {% assign
-          variant_hidden = "hidden" %} {% endif %}
-          <div class="st-tags st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" aria-label="标签" {{ variant_hidden }}>
-            {% for tag in candidate.tags %}<span>{{ tag | escape }}</span>{% endfor %}
-          </div>
-          {% endif %} {% endfor %}
-          <div class="st-audio-grid">
-            {% for role in roles %} {% assign clip = group.audio[role] %} {% case role %} {% when "timbre" %}{% assign role_title = "提音色的音频"
-            %}{% assign role_hint = "提供声音特征" %}{% assign role_number = "01" %} {% when "content" %}{% assign role_title = "提取音频token" %}{%
-            assign role_hint = "speech token来源" %}{% assign role_number = "02" %} {% endcase %}
-            <article class="st-audio-card st-{{ role }}" aria-labelledby="{{ group.id | escape }}-{{ role }}-title">
-              <div class="st-card-topline">
-                <span class="st-role-number">{{ role_number }}</span><span class="st-role-hint">{{ role_hint }}</span>
-              </div>
-              <h3 id="{{ group.id | escape }}-{{ role }}-title">{{ role_title }}</h3>
-              <div class="st-audio-clip">
-                <p class="st-clip-label">{{ clip.label | escape }}</p>
-                <p class="st-dataset-source">
-                  {{ clip.datasetLabel | default: '数据集来源' | escape }}：{{ clip.dataset | escape }}{% if clip.datasetNote %} · {{ clip.datasetNote
-                  | escape }}{% endif %}
-                </p>
-                <p class="st-audio-meta">
-                  {{ clip.duration | round: 2 }} 秒 <span aria-hidden="true">·</span> {{ clip.sampleRate | divided_by: 1000.0 }} kHz
-                  <span aria-hidden="true">·</span> {% if clip.channels == 1 %}单声道{% else %}{{ clip.channels }} 声道{% endif %}
-                </p>
-                <audio controls preload="metadata" data-role="{{ role }}" aria-label="{{ group.title | escape }}，{{ role_title }}">
-                  <source src="{{ clip.src | relative_url }}" type="audio/wav" />
-                  <a href="{{ clip.src | relative_url }}">下载该音频</a>
-                </audio>
-                <p class="st-audio-error" role="alert" hidden>音频加载失败，请使用下载链接或稍后重试。</p>
-                <a class="st-download" href="{{ clip.src | relative_url }}" download>下载 WAV <span aria-hidden="true">↗</span></a>
-              </div>
-            </article>
-            {% endfor %}
-            <article
-              class="st-audio-card st-synthesis"
-              id="{{ group.id | escape }}-synthesis"
-              aria-labelledby="{{ group.id | escape }}-synthesis-title"
-            >
-              <div class="st-card-topline"><span class="st-role-number">03</span><span class="st-role-hint">参考音色 + speech tokens</span></div>
-              <h3 id="{{ group.id | escape }}-synthesis-title">合成之后的音频</h3>
-              {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
-              candidate.audio.content.sha256 == group.audio.content.sha256 %} {% assign clip = candidate.audio.synthesis %} {% assign variant_hidden =
-              "" %} {% if candidate.id != group.id %} {% assign variant_hidden = "hidden" %} {% endif %}
-              <div class="st-audio-clip st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" {{ variant_hidden }}>
-                <p class="st-clip-label">{{ clip.label | escape }}</p>
-                <p class="st-dataset-source">
-                  {{ clip.datasetLabel | default: '数据集来源' | escape }}：{{ clip.dataset | escape }}{% if clip.datasetNote %} · {{ clip.datasetNote
-                  | escape }}{% endif %}
-                </p>
-                <p class="st-audio-meta">
-                  {{ clip.duration | round: 2 }} 秒 <span aria-hidden="true">·</span> {{ clip.sampleRate | divided_by: 1000.0 }} kHz
-                  <span aria-hidden="true">·</span> {% if clip.channels == 1 %}单声道{% else %}{{ clip.channels }} 声道{% endif %}
-                </p>
-                <audio
-                  controls
-                  preload="{% if candidate.id == group.id %}metadata{% else %}none{% endif %}"
-                  data-role="synthesis"
-                  aria-label="{{ candidate.title | escape }}，合成之后的音频，{{ candidate.method | escape }}"
-                >
-                  <source src="{{ clip.src | relative_url }}" type="audio/wav" />
-                  <a href="{{ clip.src | relative_url }}">下载该音频</a>
-                </audio>
-                <p class="st-audio-error" role="alert" hidden>音频加载失败，请使用下载链接或稍后重试。</p>
-                <a class="st-download" href="{{ clip.src | relative_url }}" download>下载 WAV <span aria-hidden="true">↗</span></a>
-              </div>
-              {% endif %} {% endfor %}
-            </article>
-          </div>
-          {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
-          candidate.audio.content.sha256 == group.audio.content.sha256 %} {% assign variant_hidden = "" %} {% if candidate.id != group.id %} {% assign
-          variant_hidden = "hidden" %} {% endif %}
-          <div class="st-group-details st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" {{ variant_hidden }}>
-            {% for note in candidate.notes %}
-            <p class="st-group-note">{{ note | escape }}</p>
-            {% endfor %} {% if candidate.transcripts.timbre != "" or candidate.transcripts.content != "" %}
-            <details class="st-transcripts">
-              <summary>查看音频文本</summary>
-              <div class="st-transcript-grid">
-                {% if candidate.transcripts.timbre != "" %}
-                <div>
-                  <h3>音色参考文本</h3>
-                  <p lang="en">{{ candidate.transcripts.timbre | escape }}</p>
+          {% assign seen_originals = "" %} {% assign reconstruction_index = 0 %} {% for group in site.data.speech_tokenizer.reconstructions %} {%
+          capture original_key %}|{{ group.audio.original.sha256 }}|{% endcapture %} {% unless seen_originals contains original_key %} {% assign
+          seen_originals = seen_originals | append: original_key %} {% assign reconstruction_index = reconstruction_index | plus: 1 %} {% capture
+          reconstruction_search %} {% for candidate in site.data.speech_tokenizer.reconstructions %} {% if candidate.audio.original.sha256 ==
+          group.audio.original.sha256 %} {{ candidate.title }} {{ candidate.method }} {{ candidate.description }} {{ candidate.tags | join: ' ' }} {{
+          candidate.id }} {{ candidate.audio.original.label }} {{ candidate.audio.original.dataset }} 重建 {{ candidate.sourceComparison }} {% endif
+          %} {% endfor %} {% endcapture %}
+          <section
+            class="st-group"
+            id="{{ group.id | escape }}"
+            aria-labelledby="{{ group.id | escape }}-title"
+            data-mode="reconstruction"
+            data-current-variant="{{ group.id | escape }}"
+            data-search="{{ reconstruction_search | strip | escape }}"
+          >
+            {% for candidate in site.data.speech_tokenizer.reconstructions %} {% if candidate.audio.original.sha256 == group.audio.original.sha256 and
+            candidate.id != group.id %}
+            <span class="st-variant-anchor" id="{{ candidate.id | escape }}" aria-hidden="true"></span>
+            {% endif %} {% endfor %}
+            <header class="st-group-header">
+              <div>
+                <div class="st-case-heading">
+                  <p class="st-case-number">
+                    重建 {{ reconstruction_index | prepend: '0' | slice: -2, 2 }}
+                    <span class="st-source-comparison">· 原对比 {{ group.sourceComparison | prepend: '0' | slice: -2, 2 }}</span>
+                  </p>
+                  <span class="st-tokenizer-badge" aria-label="本组使用的 tokenizer：{{ group.method | escape }}">
+                    <span class="st-tokenizer-key">Tokenizer</span>
+                    <select
+                      class="st-tokenizer-select"
+                      aria-label="{{ group.title | escape }}，选择 tokenizer"
+                      aria-controls="{{ group.id | escape }}-reconstruction"
+                      disabled
+                    >
+                      {% for candidate in site.data.speech_tokenizer.reconstructions %} {% if candidate.audio.original.sha256 ==
+                      group.audio.original.sha256 %}
+                      <option
+                        value="{{ candidate.id | escape }}"
+                        data-title="{{ candidate.title | escape }}"
+                        data-search="{{ candidate.title | escape }} {{ candidate.method | escape }} {{ candidate.description | escape }} {{ candidate.tags | join: ' ' | escape }} {{ candidate.id | escape }} {{ candidate.audio.original.label | escape }} {{ candidate.audio.original.dataset | escape }} 重建 {{ candidate.sourceComparison }}"
+                      >
+                        {{ candidate.method | escape }}
+                      </option>
+                      {% endif %} {% endfor %}
+                    </select>
+                  </span>
                 </div>
-                {% endif %} {% if candidate.transcripts.content != "" %}
-                <div>
-                  <h3>speech token来源文本</h3>
-                  <p lang="en">{{ candidate.transcripts.content | escape }}</p>
-                </div>
-                {% endif %}
+                <h3 class="st-group-title" id="{{ group.id | escape }}-title">{{ group.title | escape }}</h3>
+                {% for candidate in site.data.speech_tokenizer.reconstructions %} {% if candidate.audio.original.sha256 == group.audio.original.sha256
+                %} {% assign variant_hidden = "" %} {% if candidate.id != group.id %}{% assign variant_hidden = "hidden" %}{% endif %}
+                <p class="st-group-description st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" {{ variant_hidden }}>
+                  {{ candidate.description | escape }}
+                </p>
+                {% endif %} {% endfor %}
               </div>
-            </details>
-            {% endif %}
-          </div>
-          {% endif %} {% endfor %}
+              <a class="st-permalink" href="#{{ group.id | escape }}" aria-label="链接到 {{ group.title | escape }}">#</a>
+            </header>
+            {% for candidate in site.data.speech_tokenizer.reconstructions %} {% if candidate.audio.original.sha256 == group.audio.original.sha256 %}
+            {% assign variant_hidden = "" %} {% if candidate.id != group.id %}{% assign variant_hidden = "hidden" %}{% endif %}
+            <div class="st-tags st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" aria-label="标签" {{ variant_hidden }}>
+              {% for tag in candidate.tags %}<span>{{ tag | escape }}</span>{% endfor %}
+            </div>
+            {% endif %} {% endfor %}
+            <div class="st-audio-grid st-reconstruction-grid">
+              {% assign clip = group.audio.original %}
+              <article class="st-audio-card st-original" aria-labelledby="{{ group.id | escape }}-original-title">
+                <div class="st-card-topline"><span class="st-role-number">01</span><span class="st-role-hint">speech token来源</span></div>
+                <h4 id="{{ group.id | escape }}-original-title">原始音频</h4>
+                <div class="st-audio-clip">
+                  <p class="st-clip-label">{{ clip.label | escape }}</p>
+                  <p class="st-dataset-source">
+                    {{ clip.datasetLabel | default: '数据集来源' | escape }}：{{ clip.dataset | escape }}{% if clip.datasetNote %} · {{
+                    clip.datasetNote | escape }}{% endif %}
+                  </p>
+                  <p class="st-audio-meta">
+                    {{ clip.duration | round: 2 }} 秒 <span aria-hidden="true">·</span> {{ clip.sampleRate | divided_by: 1000.0 }} kHz
+                    <span aria-hidden="true">·</span> {% if clip.channels == 1 %}单声道{% else %}{{ clip.channels }} 声道{% endif %}
+                  </p>
+                  <audio controls preload="metadata" data-role="original" aria-label="{{ group.title | escape }}，原始音频">
+                    <source src="{{ clip.src | relative_url }}" type="audio/wav" />
+                    <a href="{{ clip.src | relative_url }}">下载该音频</a>
+                  </audio>
+                  <p class="st-audio-error" role="alert" hidden>音频加载失败，请使用下载链接或稍后重试。</p>
+                  <a class="st-download" href="{{ clip.src | relative_url }}" download>下载 WAV <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+              <article
+                class="st-audio-card st-reconstruction"
+                id="{{ group.id | escape }}-reconstruction"
+                aria-labelledby="{{ group.id | escape }}-reconstruction-title"
+              >
+                <div class="st-card-topline"><span class="st-role-number">02</span><span class="st-role-hint">同一原始音频重建</span></div>
+                <h4 id="{{ group.id | escape }}-reconstruction-title">重建后的音频</h4>
+                {% for candidate in site.data.speech_tokenizer.reconstructions %} {% if candidate.audio.original.sha256 == group.audio.original.sha256
+                %} {% assign clip = candidate.audio.reconstruction %} {% assign variant_hidden = "" %} {% if candidate.id != group.id %}{% assign
+                variant_hidden = "hidden" %}{% endif %}
+                <div class="st-audio-clip st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" {{ variant_hidden }}>
+                  <p class="st-clip-label">{{ clip.label | escape }}</p>
+                  <p class="st-dataset-source">
+                    {{ clip.datasetLabel | default: '数据集来源' | escape }}：{{ clip.dataset | escape }}{% if clip.datasetNote %} · {{
+                    clip.datasetNote | escape }}{% endif %}
+                  </p>
+                  <p class="st-audio-meta">
+                    {{ clip.duration | round: 2 }} 秒 <span aria-hidden="true">·</span> {{ clip.sampleRate | divided_by: 1000.0 }} kHz
+                    <span aria-hidden="true">·</span> {% if clip.channels == 1 %}单声道{% else %}{{ clip.channels }} 声道{% endif %}
+                  </p>
+                  <audio
+                    controls
+                    preload="{% if candidate.id == group.id %}metadata{% else %}none{% endif %}"
+                    data-role="reconstruction"
+                    aria-label="{{ candidate.title | escape }}，重建后的音频，{{ candidate.method | escape }}"
+                  >
+                    <source src="{{ clip.src | relative_url }}" type="audio/wav" />
+                    <a href="{{ clip.src | relative_url }}">下载该音频</a>
+                  </audio>
+                  <p class="st-audio-error" role="alert" hidden>音频加载失败，请使用下载链接或稍后重试。</p>
+                  <a class="st-download" href="{{ clip.src | relative_url }}" download>下载 WAV <span aria-hidden="true">↗</span></a>
+                </div>
+                {% endif %} {% endfor %}
+              </article>
+            </div>
+            {% for candidate in site.data.speech_tokenizer.reconstructions %} {% if candidate.audio.original.sha256 == group.audio.original.sha256 %}
+            {% assign variant_hidden = "" %} {% if candidate.id != group.id %}{% assign variant_hidden = "hidden" %}{% endif %}
+            <div class="st-group-details st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" {{ variant_hidden }}>
+              {% for note in candidate.notes %}
+              <p class="st-group-note">{{ note | escape }}</p>
+              {% endfor %}
+            </div>
+            {% endif %} {% endfor %}
+          </section>
+          {% endunless %} {% endfor %}
         </section>
-        {% endunless %} {% endfor %}
+        <section id="st-synthesis-panel" class="st-mode-panel" data-mode-panel="synthesis" aria-labelledby="st-synthesis-heading">
+          <header class="st-panel-heading">
+            <h2 id="st-synthesis-heading">音频合成</h2>
+            <p>每组包含音色参考、speech token来源和合成结果。选择 tokenizer，试听相同音频组合的不同合成结果。</p>
+          </header>
+          {% assign roles = "timbre,content" | split: "," %} {% assign seen_pairs = "" %} {% assign comparison_index = 0 %} {% for group in
+          site.data.speech_tokenizer.groups %} {% capture pair_key %}|{{ group.audio.timbre.sha256 }}:{{ group.audio.content.sha256 }}|{% endcapture
+          %} {% unless seen_pairs contains pair_key %} {% assign seen_pairs = seen_pairs | append: pair_key %} {% assign comparison_index =
+          comparison_index | plus: 1 %} {% capture comparison_search %} {% for candidate in site.data.speech_tokenizer.groups %} {% if
+          candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and candidate.audio.content.sha256 == group.audio.content.sha256 %} {{
+          candidate.title }} {{ candidate.method }} {{ candidate.description }} {{ candidate.tags | join: ' ' }} {{ candidate.id }} {% endif %} {%
+          endfor %} {% endcapture %}
+          <section
+            class="st-group"
+            id="{{ group.id | escape }}"
+            aria-labelledby="{{ group.id | escape }}-title"
+            data-mode="synthesis"
+            data-current-variant="{{ group.id | escape }}"
+            data-search="{{ comparison_search | strip | escape }}"
+          >
+            {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
+            candidate.audio.content.sha256 == group.audio.content.sha256 and candidate.id != group.id %}
+            <span class="st-variant-anchor" id="{{ candidate.id | escape }}" aria-hidden="true"></span>
+            {% endif %} {% endfor %}
+            <header class="st-group-header">
+              <div>
+                <div class="st-case-heading">
+                  <p class="st-case-number">对比 {{ comparison_index | prepend: '0' | slice: -2, 2 }}</p>
+                  <span class="st-tokenizer-badge" aria-label="本组使用的 tokenizer：{{ group.method | escape }}">
+                    <span class="st-tokenizer-key">Tokenizer</span>
+                    <select
+                      class="st-tokenizer-select"
+                      aria-label="{{ group.title | escape }}，选择 tokenizer"
+                      aria-controls="{{ group.id | escape }}-synthesis"
+                      disabled
+                    >
+                      {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
+                      candidate.audio.content.sha256 == group.audio.content.sha256 %}
+                      <option
+                        value="{{ candidate.id | escape }}"
+                        data-title="{{ candidate.title | escape }}"
+                        data-search="{{ candidate.title | escape }} {{ candidate.method | escape }} {{ candidate.description | escape }} {{ candidate.tags | join: ' ' | escape }} {{ candidate.id | escape }}"
+                      >
+                        {{ candidate.method | escape }}
+                      </option>
+                      {% endif %} {% endfor %}
+                    </select>
+                  </span>
+                </div>
+                <h3 class="st-group-title" id="{{ group.id | escape }}-title">{{ group.title | escape }}</h3>
+                {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
+                candidate.audio.content.sha256 == group.audio.content.sha256 %} {% assign variant_hidden = "" %} {% if candidate.id != group.id %} {%
+                assign variant_hidden = "hidden" %} {% endif %}
+                <p class="st-group-description st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" {{ variant_hidden }}>
+                  {{ candidate.description | escape }}
+                </p>
+                {% endif %} {% endfor %}
+              </div>
+              <a class="st-permalink" href="#{{ group.id | escape }}" aria-label="链接到 {{ group.title | escape }}">#</a>
+            </header>
+            {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
+            candidate.audio.content.sha256 == group.audio.content.sha256 %} {% assign variant_hidden = "" %} {% if candidate.id != group.id %} {%
+            assign variant_hidden = "hidden" %} {% endif %}
+            <div class="st-tags st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" aria-label="标签" {{ variant_hidden }}>
+              {% for tag in candidate.tags %}<span>{{ tag | escape }}</span>{% endfor %}
+            </div>
+            {% endif %} {% endfor %}
+            <div class="st-audio-grid">
+              {% for role in roles %} {% assign clip = group.audio[role] %} {% case role %} {% when "timbre" %}{% assign role_title = "提音色的音频"
+              %}{% assign role_hint = "提供声音特征" %}{% assign role_number = "01" %} {% when "content" %}{% assign role_title = "提取音频token" %}{%
+              assign role_hint = "speech token来源" %}{% assign role_number = "02" %} {% endcase %}
+              <article class="st-audio-card st-{{ role }}" aria-labelledby="{{ group.id | escape }}-{{ role }}-title">
+                <div class="st-card-topline">
+                  <span class="st-role-number">{{ role_number }}</span><span class="st-role-hint">{{ role_hint }}</span>
+                </div>
+                <h4 id="{{ group.id | escape }}-{{ role }}-title">{{ role_title }}</h4>
+                <div class="st-audio-clip">
+                  <p class="st-clip-label">{{ clip.label | escape }}</p>
+                  <p class="st-dataset-source">
+                    {{ clip.datasetLabel | default: '数据集来源' | escape }}：{{ clip.dataset | escape }}{% if clip.datasetNote %} · {{
+                    clip.datasetNote | escape }}{% endif %}
+                  </p>
+                  <p class="st-audio-meta">
+                    {{ clip.duration | round: 2 }} 秒 <span aria-hidden="true">·</span> {{ clip.sampleRate | divided_by: 1000.0 }} kHz
+                    <span aria-hidden="true">·</span> {% if clip.channels == 1 %}单声道{% else %}{{ clip.channels }} 声道{% endif %}
+                  </p>
+                  <audio controls preload="metadata" data-role="{{ role }}" aria-label="{{ group.title | escape }}，{{ role_title }}">
+                    <source src="{{ clip.src | relative_url }}" type="audio/wav" />
+                    <a href="{{ clip.src | relative_url }}">下载该音频</a>
+                  </audio>
+                  <p class="st-audio-error" role="alert" hidden>音频加载失败，请使用下载链接或稍后重试。</p>
+                  <a class="st-download" href="{{ clip.src | relative_url }}" download>下载 WAV <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+              {% endfor %}
+              <article
+                class="st-audio-card st-synthesis"
+                id="{{ group.id | escape }}-synthesis"
+                aria-labelledby="{{ group.id | escape }}-synthesis-title"
+              >
+                <div class="st-card-topline"><span class="st-role-number">03</span><span class="st-role-hint">参考音色 + speech tokens</span></div>
+                <h4 id="{{ group.id | escape }}-synthesis-title">合成之后的音频</h4>
+                {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
+                candidate.audio.content.sha256 == group.audio.content.sha256 %} {% assign clip = candidate.audio.synthesis %} {% assign variant_hidden
+                = "" %} {% if candidate.id != group.id %} {% assign variant_hidden = "hidden" %} {% endif %}
+                <div class="st-audio-clip st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" {{ variant_hidden }}>
+                  <p class="st-clip-label">{{ clip.label | escape }}</p>
+                  <p class="st-dataset-source">
+                    {{ clip.datasetLabel | default: '数据集来源' | escape }}：{{ clip.dataset | escape }}{% if clip.datasetNote %} · {{
+                    clip.datasetNote | escape }}{% endif %}
+                  </p>
+                  <p class="st-audio-meta">
+                    {{ clip.duration | round: 2 }} 秒 <span aria-hidden="true">·</span> {{ clip.sampleRate | divided_by: 1000.0 }} kHz
+                    <span aria-hidden="true">·</span> {% if clip.channels == 1 %}单声道{% else %}{{ clip.channels }} 声道{% endif %}
+                  </p>
+                  <audio
+                    controls
+                    preload="{% if candidate.id == group.id %}metadata{% else %}none{% endif %}"
+                    data-role="synthesis"
+                    aria-label="{{ candidate.title | escape }}，合成之后的音频，{{ candidate.method | escape }}"
+                  >
+                    <source src="{{ clip.src | relative_url }}" type="audio/wav" />
+                    <a href="{{ clip.src | relative_url }}">下载该音频</a>
+                  </audio>
+                  <p class="st-audio-error" role="alert" hidden>音频加载失败，请使用下载链接或稍后重试。</p>
+                  <a class="st-download" href="{{ clip.src | relative_url }}" download>下载 WAV <span aria-hidden="true">↗</span></a>
+                </div>
+                {% endif %} {% endfor %}
+              </article>
+            </div>
+            {% for candidate in site.data.speech_tokenizer.groups %} {% if candidate.audio.timbre.sha256 == group.audio.timbre.sha256 and
+            candidate.audio.content.sha256 == group.audio.content.sha256 %} {% assign variant_hidden = "" %} {% if candidate.id != group.id %} {%
+            assign variant_hidden = "hidden" %} {% endif %}
+            <div class="st-group-details st-variant-fragment" data-variant-id="{{ candidate.id | escape }}" {{ variant_hidden }}>
+              {% for note in candidate.notes %}
+              <p class="st-group-note">{{ note | escape }}</p>
+              {% endfor %} {% if candidate.transcripts.timbre != "" or candidate.transcripts.content != "" %}
+              <details class="st-transcripts">
+                <summary>查看音频文本</summary>
+                <div class="st-transcript-grid">
+                  {% if candidate.transcripts.timbre != "" %}
+                  <div>
+                    <h3>音色参考文本</h3>
+                    <p lang="en">{{ candidate.transcripts.timbre | escape }}</p>
+                  </div>
+                  {% endif %} {% if candidate.transcripts.content != "" %}
+                  <div>
+                    <h3>speech token来源文本</h3>
+                    <p lang="en">{{ candidate.transcripts.content | escape }}</p>
+                  </div>
+                  {% endif %}
+                </div>
+              </details>
+              {% endif %}
+            </div>
+            {% endif %} {% endfor %}
+          </section>
+          {% endunless %} {% endfor %}
+        </section>
       </div>
       <p id="st-empty-state" class="st-empty-state" hidden>没有匹配的对比组。试试其他关键词。</p>
-      <noscript><p>当前显示每组的第一个 tokenizer，音频播放器可以直接使用。切换 tokenizer、搜索和自动暂停需要启用 JavaScript。</p></noscript>
-      <footer class="st-footer"><span>Speech Tokenizer · Audio Comparisons</span><span>参考音色 / speech token来源 / 合成结果</span></footer>
+      <noscript
+        ><p>
+          下方显示重建和音频合成两类对比，每组使用第一个 tokenizer。音频播放器可以直接使用；切换试听类型、tokenizer、搜索和自动暂停需要启用
+          JavaScript。
+        </p></noscript
+      >
+      <footer class="st-footer"><span>Speech Tokenizer · Audio Comparisons</span><span>音频重建 / 音频合成</span></footer>
     </main>
     <script src="{{ '/assets/js/speech_tokenizer.js' | relative_url }}" defer></script>
   </body>

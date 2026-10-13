@@ -912,3 +912,133 @@ select {
   line-height: 1.8;
   overflow-wrap: anywhere;
 }
+
+.st-flow-container {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+.st-mode-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 24px;
+  margin-bottom: 26px;
+  border: 1px solid var(--st-border);
+  border-radius: 14px;
+  background: var(--st-panel);
+}
+.st-mode-label {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 550;
+}
+.st-mode-options {
+  display: flex;
+  gap: 8px;
+  padding: 5px;
+  border: 1px solid var(--st-border);
+  border-radius: 11px;
+  background: var(--st-bg);
+}
+.st-mode-button {
+  min-width: 116px;
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--st-muted);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.st-mode-button[aria-pressed="true"] {
+  border-color: #46796d;
+  background: #203e35;
+  color: var(--st-timbre);
+}
+.st-mode-button:hover {
+  color: var(--st-text);
+}
+.st-mode-button:disabled {
+  cursor: default;
+}
+.st-panel-heading {
+  margin-bottom: 26px;
+}
+.st-panel-heading h2 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  font-weight: 550;
+}
+.st-panel-heading p {
+  max-width: 920px;
+  margin: 0;
+  color: var(--st-muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+.st-mode-panel + .st-mode-panel {
+  margin-top: 42px;
+}
+.speech-tokenizer[data-mode] .st-mode-panel {
+  margin-top: 0;
+}
+.st-group-header .st-group-title {
+  margin: 0 0 10px;
+  padding-right: 30px;
+  font-size: 28px;
+  font-weight: 550;
+  line-height: 1.5;
+}
+.st-source-comparison {
+  color: var(--st-muted);
+  font-size: 14px;
+  white-space: normal;
+}
+.st-reconstruction-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.st-audio-card.st-original {
+  border-top-color: var(--st-timbre);
+}
+.st-audio-card.st-reconstruction {
+  --st-role: var(--st-synthesis);
+  border-top-color: var(--st-synthesis);
+}
+.st-audio-card h4 {
+  margin: 0 0 10px;
+  color: var(--st-role);
+  font-size: 20px;
+  font-weight: 550;
+  line-height: 1.5;
+}
+@media (max-width: 900px) {
+  .st-reconstruction-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .st-mode-control {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+  .st-mode-button {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+  }
+  .st-panel-heading h2 {
+    font-size: 24px;
+  }
+  .st-group-header .st-group-title {
+    font-size: 24px;
+  }
+  .st-case-heading .st-case-number {
+    white-space: normal;
+  }
+}

@@ -370,5 +370,279 @@
         "Fun-CosyVoice3-0.5B-2512：新闻播报提取 speech tokens；男声参考提供 speaker embedding、prompt tokens 与声学特征，使用官方 voice conversion 解码。"
       ]
     }
+  ],
+  "reconstructions": [
+    {
+      "id": "reconstruction-01-kanade",
+      "title": "新闻播报",
+      "description": "重建对比 01：使用新闻播报的原始音频，提取并解码同一音频的 speech tokens 与声音条件。",
+      "method": "Kanade",
+      "tags": ["YODAS", "新闻播报"],
+      "sourceComparison": 1,
+      "audio": {
+        "original": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-01-kanade/original.wav",
+          "label": "原始新闻播报",
+          "duration": 30.0,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "10f0bf7768a17fad68e4c0371560febd9a0494d54c786e8b9771d84135ec3050",
+          "dataset": "YODAS"
+        },
+        "reconstruction": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-01-kanade/reconstruction.wav",
+          "label": "Kanade · 新闻播报重建",
+          "duration": 30.0,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "cabca6243ec6dc8314d43e0b5addcb3ca46ad6e181d95736b7ba92d25bcc3864",
+          "dataset": "YODAS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "Kanade 重建结果"
+        }
+      },
+      "notes": [
+        "原始音频与音频合成视图中对比 01 的所选录音完全相同。",
+        "Kanade 25hz-clean：同一原始音频的 speech tokens 与 global embedding 直接解码。"
+      ]
+    },
+    {
+      "id": "reconstruction-01-cosyvoice3",
+      "title": "新闻播报",
+      "description": "重建对比 01：使用新闻播报的原始音频，提取并解码同一音频的 speech tokens 与声音条件。",
+      "method": "CosyVoice 3",
+      "tags": ["YODAS", "新闻播报"],
+      "sourceComparison": 1,
+      "audio": {
+        "original": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-01-cosyvoice3/original.wav",
+          "label": "原始新闻播报",
+          "duration": 30.0,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "10f0bf7768a17fad68e4c0371560febd9a0494d54c786e8b9771d84135ec3050",
+          "dataset": "YODAS"
+        },
+        "reconstruction": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-01-cosyvoice3/reconstruction.wav",
+          "label": "CosyVoice 3 · 新闻播报重建",
+          "duration": 30.0,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "15f69ea280de50237da88f42a814db63020e012db47455c96bfc45bbb15aca63",
+          "dataset": "YODAS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "CosyVoice 3 重建结果"
+        }
+      },
+      "notes": [
+        "原始音频与音频合成视图中对比 01 的所选录音完全相同。",
+        "CosyVoice 3：原始音频自身提供 speech tokens、speaker embedding、prompt tokens 与声学特征，通过 flow 与 HiFT 解码重建。"
+      ]
+    },
+    {
+      "id": "reconstruction-02-kanade",
+      "title": "疼痛（pain）",
+      "description": "重建对比 02：使用疼痛（pain）的原始音频，提取并解码同一音频的 speech tokens 与声音条件。",
+      "method": "Kanade",
+      "tags": ["EARS", "疼痛（pain）"],
+      "sourceComparison": 2,
+      "audio": {
+        "original": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-02-kanade/original.wav",
+          "label": "p002 · 疼痛（pain） · freeform",
+          "duration": 12.978229166666667,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "3144cfaab3540a90324cc4744c55d9f1134c0607e25683fca4835eaab6b68f1b",
+          "dataset": "EARS"
+        },
+        "reconstruction": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-02-kanade/reconstruction.wav",
+          "label": "Kanade · 疼痛（pain）重建",
+          "duration": 12.96,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "41a1934d434b4a6a844188ae1a216e814725ddd137e6401a93435cf72418ffd3",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "Kanade 重建结果"
+        }
+      },
+      "notes": [
+        "原始音频与音频合成视图中对比 02 的所选录音完全相同。",
+        "Kanade 25hz-clean：同一原始音频的 speech tokens 与 global embedding 直接解码。"
+      ]
+    },
+    {
+      "id": "reconstruction-02-cosyvoice3",
+      "title": "疼痛（pain）",
+      "description": "重建对比 02：使用疼痛（pain）的原始音频，提取并解码同一音频的 speech tokens 与声音条件。",
+      "method": "CosyVoice 3",
+      "tags": ["EARS", "疼痛（pain）"],
+      "sourceComparison": 2,
+      "audio": {
+        "original": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-02-cosyvoice3/original.wav",
+          "label": "p002 · 疼痛（pain） · freeform",
+          "duration": 12.978229166666667,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "3144cfaab3540a90324cc4744c55d9f1134c0607e25683fca4835eaab6b68f1b",
+          "dataset": "EARS"
+        },
+        "reconstruction": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-02-cosyvoice3/reconstruction.wav",
+          "label": "CosyVoice 3 · 疼痛（pain）重建",
+          "duration": 13.04,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "0194b4eb94a132ea927f535f5a77b0d124d7e3c173b1bd6af254ea2b68b66962",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "CosyVoice 3 重建结果"
+        }
+      },
+      "notes": [
+        "原始音频与音频合成视图中对比 02 的所选录音完全相同。",
+        "CosyVoice 3：原始音频自身提供 speech tokens、speaker embedding、prompt tokens 与声学特征，通过 flow 与 HiFT 解码重建。"
+      ]
+    },
+    {
+      "id": "reconstruction-03-kanade",
+      "title": "愤怒（anger）",
+      "description": "重建对比 03：使用愤怒（anger）的原始音频，提取并解码同一音频的 speech tokens 与声音条件。",
+      "method": "Kanade",
+      "tags": ["EARS", "愤怒（anger）"],
+      "sourceComparison": 3,
+      "audio": {
+        "original": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-03-kanade/original.wav",
+          "label": "p002 · 愤怒（anger） · freeform",
+          "duration": 12.321979166666667,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "d9dab37f7890f9509d98e8fd06b737ba9592dfe1cca93f50711c8b85a2b2535b",
+          "dataset": "EARS"
+        },
+        "reconstruction": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-03-kanade/reconstruction.wav",
+          "label": "Kanade · 愤怒（anger）重建",
+          "duration": 12.32,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "59ca69b5902fec7fd5264d160bfcc63fc521bafa2898d64c8c2bf5d332be196b",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "Kanade 重建结果"
+        }
+      },
+      "notes": [
+        "原始音频与音频合成视图中对比 03 的所选录音完全相同。",
+        "Kanade 25hz-clean：同一原始音频的 speech tokens 与 global embedding 直接解码。"
+      ]
+    },
+    {
+      "id": "reconstruction-03-cosyvoice3",
+      "title": "愤怒（anger）",
+      "description": "重建对比 03：使用愤怒（anger）的原始音频，提取并解码同一音频的 speech tokens 与声音条件。",
+      "method": "CosyVoice 3",
+      "tags": ["EARS", "愤怒（anger）"],
+      "sourceComparison": 3,
+      "audio": {
+        "original": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-03-cosyvoice3/original.wav",
+          "label": "p002 · 愤怒（anger） · freeform",
+          "duration": 12.321979166666667,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "d9dab37f7890f9509d98e8fd06b737ba9592dfe1cca93f50711c8b85a2b2535b",
+          "dataset": "EARS"
+        },
+        "reconstruction": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-03-cosyvoice3/reconstruction.wav",
+          "label": "CosyVoice 3 · 愤怒（anger）重建",
+          "duration": 12.32,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "b59c4b08c6ae1b95e612e0076a5bdba308e0a844e3fca9d677a86d2b5351a41f",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "CosyVoice 3 重建结果"
+        }
+      },
+      "notes": [
+        "原始音频与音频合成视图中对比 03 的所选录音完全相同。",
+        "CosyVoice 3：原始音频自身提供 speech tokens、speaker embedding、prompt tokens 与声学特征，通过 flow 与 HiFT 解码重建。"
+      ]
+    },
+    {
+      "id": "reconstruction-04-kanade",
+      "title": "失望（disappointment）",
+      "description": "重建对比 04：使用失望（disappointment）的原始音频，提取并解码同一音频的 speech tokens 与声音条件。",
+      "method": "Kanade",
+      "tags": ["EARS", "失望（disappointment）"],
+      "sourceComparison": 4,
+      "audio": {
+        "original": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-04-kanade/original.wav",
+          "label": "p002 · 失望（disappointment） · freeform",
+          "duration": 17.597020833333332,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "56691a9ccc8ab797ebd8215e5f49061814683837f629468d91850d283413c614",
+          "dataset": "EARS"
+        },
+        "reconstruction": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-04-kanade/reconstruction.wav",
+          "label": "Kanade · 失望（disappointment）重建",
+          "duration": 17.58,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "d3ebee4030a780062ee8fcbfbb8cd0b543cecaaf1df15dde001ebab4ae7750e5",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "Kanade 重建结果"
+        }
+      },
+      "notes": [
+        "原始音频与音频合成视图中对比 04 的所选录音完全相同。",
+        "Kanade 25hz-clean：同一原始音频的 speech tokens 与 global embedding 直接解码。"
+      ]
+    },
+    {
+      "id": "reconstruction-04-cosyvoice3",
+      "title": "失望（disappointment）",
+      "description": "重建对比 04：使用失望（disappointment）的原始音频，提取并解码同一音频的 speech tokens 与声音条件。",
+      "method": "CosyVoice 3",
+      "tags": ["EARS", "失望（disappointment）"],
+      "sourceComparison": 4,
+      "audio": {
+        "original": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-04-cosyvoice3/original.wav",
+          "label": "p002 · 失望（disappointment） · freeform",
+          "duration": 17.597020833333332,
+          "sampleRate": 48000,
+          "channels": 1,
+          "sha256": "56691a9ccc8ab797ebd8215e5f49061814683837f629468d91850d283413c614",
+          "dataset": "EARS"
+        },
+        "reconstruction": {
+          "src": "assets/audio/speech_tokenizer/reconstruction-04-cosyvoice3/reconstruction.wav",
+          "label": "CosyVoice 3 · 失望（disappointment）重建",
+          "duration": 17.62,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "42ea3a6c459fc50483b2e55dba4e68833718ece1c2ec773706031bac6967cb01",
+          "dataset": "EARS",
+          "datasetLabel": "数据来源",
+          "datasetNote": "CosyVoice 3 重建结果"
+        }
+      },
+      "notes": [
+        "原始音频与音频合成视图中对比 04 的所选录音完全相同。",
+        "CosyVoice 3：原始音频自身提供 speech tokens、speaker embedding、prompt tokens 与声学特征，通过 flow 与 HiFT 解码重建。"
+      ]
+    }
   ]
 }

@@ -3,6 +3,28 @@
 The page is served at `/speech_tokenizer/`. Comparison groups come from
 `_data/speech_tokenizer.json`; adding a group does not require editing the page.
 
+The top-level view selector offers 重建 and 音频合成. Synthesis comparisons keep
+the original three roles below. Reconstruction entries live in the separate
+`reconstructions` array and contain exactly `audio.original` and
+`audio.reconstruction`; each original is grouped by its SHA-256 with a tokenizer
+selector for Kanade and CosyVoice 3. `sourceComparison` identifies the original
+synthesis comparison number. Every reconstruction entry also has a stable `id`,
+`title`, `description`, `method`, `tags`, and `notes`.
+
+Both reconstruction roles use the same WAV metadata fields and include `dataset`.
+Their assets live at `assets/audio/speech_tokenizer/<id>/<role>.wav` with the
+original WAV copied unchanged. Kanade extracts and decodes tokens and the global
+embedding from the same original. CosyVoice 3 uses that original for both source
+speech tokens and its own speaker embedding, prompt tokens, and acoustic features,
+then runs its flow/HiFT decoder; this is reconstruction conditioned on the original
+audio, with no text or LLM generation. Do not describe it as token-only decoding.
+
+The default view is reconstruction. Old synthesis anchors reveal synthesis and
+select their original tokenizer; reconstruction anchors reveal reconstruction.
+Switching the view pauses audio, preserves each tokenizer choice, and applies
+search only to the active view. Without JavaScript, both labeled sections keep
+their default originals and outputs available.
+
 It is a standalone page available by direct URL, with an independent design.
 It is intentionally excluded from the main site's navigation, site search, and
 sitemap, and asks search engines not to index it. Keep these settings when adding

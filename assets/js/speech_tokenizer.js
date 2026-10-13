@@ -8,9 +8,35 @@
   const pauseButton = root.querySelector("#st-pause-all");
   const search = root.querySelector("#st-search-input");
   const groups = Array.from(root.querySelectorAll(".st-group"));
+  const modePanels = Array.from(root.querySelectorAll("[data-mode-panel]"));
+  const modeButtons = Array.from(root.querySelectorAll(".st-mode-button"));
+  const modeContexts = Array.from(root.querySelectorAll("[data-mode-context]"));
   const count = root.querySelector("#st-group-count");
   const emptyState = root.querySelector("#st-empty-state");
   const variantsById = new Map();
+  let activeMode = "reconstruction";
+
+  function pauseAll() {
+    players.forEach((player) => player.pause());
+    updatePauseButton();
+  }
+
+  function selectMode(mode) {
+    if (!modePanels.some((panel) => panel.dataset.modePanel === mode)) return;
+    if (mode !== activeMode) pauseAll();
+    activeMode = mode;
+    root.dataset.mode = mode;
+    modePanels.forEach((panel) => {
+      panel.hidden = panel.dataset.modePanel !== mode;
+    });
+    modeContexts.forEach((context) => {
+      context.hidden = context.dataset.modeContext !== mode;
+    });
+    modeButtons.forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.mode === mode));
+    });
+    filterGroups();
+  }
 
   function selectVariant(group, variantId) {
     const selector = group.querySelector(".st-tokenizer-select");
@@ -76,14 +102,14 @@
   });
 
   pauseButton.addEventListener("click", () => {
-    players.forEach((player) => player.pause());
-    updatePauseButton();
+    pauseAll();
   });
 
   function filterGroups() {
     const query = search.value.trim().toLocaleLowerCase();
+    const activeGroups = groups.filter((group) => group.dataset.mode === activeMode);
     let visible = 0;
-    groups.forEach((group) => {
+    activeGroups.forEach((group) => {
       const matches = (group.dataset.search || "").toLocaleLowerCase().includes(query);
       group.hidden = !matches;
       if (matches) {
@@ -98,7 +124,7 @@
         }
       } else group.querySelectorAll("audio").forEach((player) => player.pause());
     });
-    count.textContent = query ? `${visible} / ${groups.length} 组对比` : `${groups.length} 组对比`;
+    count.textContent = query ? `${visible} / ${activeGroups.length} 组对比` : `${activeGroups.length} 组对比`;
     emptyState.hidden = visible !== 0;
   }
 
@@ -112,13 +138,28 @@
     const group = variantsById.get(variantId);
     if (!group) return;
     search.value = "";
-    filterGroups();
+    selectMode(group.dataset.mode);
     selectVariant(group, variantId);
     group.scrollIntoView({ block: "start" });
   }
 
   search.addEventListener("input", filterGroups);
+  modeButtons.forEach((button) => {
+    button.disabled = false;
+    button.addEventListener("click", () => {
+      selectMode(button.dataset.mode);
+      let linkedGroup;
+      try {
+        linkedGroup = variantsById.get(decodeURIComponent(location.hash.slice(1)));
+      } catch {
+        return;
+      }
+      if (linkedGroup && linkedGroup.dataset.mode !== activeMode) {
+        history.replaceState(null, "", `${location.pathname}${location.search}`);
+      }
+    });
+  });
   window.addEventListener("hashchange", followVariantLink);
-  filterGroups();
+  selectMode(activeMode);
   followVariantLink();
 })();
