@@ -176,6 +176,66 @@ def validate_data(data, root):
             require(math.isclose(duration, actual["duration"], rel_tol=0, abs_tol=1e-6),
                     f"{name}: duration does not match WAV frame count")
             summaries.append({"group": group_id, "role": role, **actual})
+    summaries.extend(validate_reconstruction_data(data, root, seen_ids))
+    return summaries
+
+
+def validate_reconstruction_data(data, root, existing_ids):
+    """Check the separate two-player reconstruction comparisons."""
+    entries = data.get("reconstructions", [])
+    require(isinstance(entries, list), "reconstructions must be an array")
+    pairs = []
+    for group in data["groups"]:
+        pair = (group["audio"]["timbre"]["sha256"], group["audio"]["content"]["sha256"])
+        if pair not in pairs:
+            pairs.append(pair)
+    seen_ids = set(existing_ids)
+    summaries = []
+    for index, entry in enumerate(entries):
+        context = f"reconstructions[{index}]"
+        require(isinstance(entry, dict), f"{context}: entry must be an object")
+        entry_id = entry.get("id")
+        require(isinstance(entry_id, str) and ID_RE.fullmatch(entry_id), f"{context}: invalid id")
+        require(entry_id not in seen_ids, f"{context}: duplicate id {entry_id}")
+        seen_ids.add(entry_id)
+        context = entry_id
+        for key in ("title", "description", "method"):
+            require(_nonempty_string(entry.get(key)), f"{context}: {key} must be a nonempty string")
+        source_comparison = entry.get("sourceComparison")
+        require(type(source_comparison) is int and 1 <= source_comparison <= len(pairs),
+                f"{context}: sourceComparison must identify an existing synthesis comparison")
+        for key in ("tags", "notes"):
+            values = entry.get(key, [])
+            require(isinstance(values, list) and all(_nonempty_string(value) for value in values),
+                    f"{context}: {key} must be an array of nonempty strings")
+        audio = entry.get("audio")
+        require(isinstance(audio, dict) and set(audio) == {"original", "reconstruction"},
+                f"{context}: audio must contain exactly original and reconstruction")
+        for role in ("original", "reconstruction"):
+            clip = audio[role]
+            name = f"{context}/{role}"
+            require(isinstance(clip, dict), f"{name}: audio must be an object")
+            expected_src = f"assets/audio/speech_tokenizer/{entry_id}/{role}.wav"
+            require(clip.get("src") == expected_src, f"{name}: src must be {expected_src}")
+            for key in ("label", "dataset"):
+                require(_nonempty_string(clip.get(key)), f"{name}: {key} must be a nonempty string")
+            require(isinstance(clip.get("sha256"), str) and SHA_RE.fullmatch(clip["sha256"]),
+                    f"{name}: invalid sha256")
+            duration = clip.get("duration")
+            require(type(duration) in (int, float) and math.isfinite(duration) and duration > 0,
+                    f"{name}: duration must be finite and positive")
+            for key in ("sampleRate", "channels"):
+                require(type(clip.get(key)) is int and clip[key] > 0, f"{name}: invalid {key}")
+            path = (root / expected_src).resolve()
+            require(path.is_relative_to(root) and path.is_file(), f"{name}: WAV is missing or escapes repository")
+            actual = inspect_wav(path.read_bytes(), name)
+            for key in ("sha256", "sampleRate", "channels"):
+                require(clip[key] == actual[key], f"{name}: {key} does not match WAV")
+            require(math.isclose(duration, actual["duration"], rel_tol=0, abs_tol=1e-6),
+                    f"{name}: duration does not match WAV")
+            summaries.append({"group": entry_id, "role": role, **actual})
+        require(audio["original"]["sha256"] in pairs[source_comparison - 1],
+                f"{context}: original does not match its source comparison")
     return summaries
 
 
@@ -201,7 +261,9 @@ def main(argv=None):
     except (ValidationError, OSError) as error:
         print(f"Validation failed: {error}", file=sys.stderr)
         return 1
-    print(f"Validated {len(summaries) // len(ROLES)} complete group(s), {len(summaries)} WAV files.")
+    data = load_manifest(manifest)
+    print(f"Validated {len(data['groups'])} synthesis entries, "
+          f"{len(data.get('reconstructions', []))} reconstruction entries, {len(summaries)} WAV references.")
     for item in summaries:
         print(f"  {item['group']}/{item['role']}: {item['duration']:.2f}s, "
               f"{item['sampleRate']} Hz, {item['channels']} channel(s), "

@@ -13,11 +13,20 @@ Keep a `noindex` robots meta tag. Preserve the direct URL `/speech_tokenizer/`.
 Its design must remain independent of the academic homepage; do not inherit the
 homepage header, footer, theme styles, or theme scripts.
 
-The user requires **every comparison group to contain all three audio roles**:
+The user requires **every audio synthesis comparison to contain all three audio roles**:
 
 1. `timbre`: 提音色的音频 — the reference from which speaker timbre is extracted.
 2. `content`: 提取音频token — the source from which speech tokens are extracted.
 3. `synthesis`: 合成之后的音频 — the reconstruction combining those features.
+
+Reconstruction comparisons have exactly two roles, `original` (原始音频) and
+`reconstruction` (重建后的音频). Encode and decode each original with its own
+voice conditions; never substitute a voice-conversion result from another input.
+Store these entries in the separate manifest `reconstructions` array, grouped by
+the original WAV hash. Offer a prominent 重建 / 音频合成 view selector; each view
+keeps its own comparison count and method selection. Existing synthesis bookmarks
+must continue to select their view and tokenizer. Identify original-as-reference
+conditioning for CosyVoice 3 reconstruction accurately.
 
 Keep these stable role keys and display order when adding or editing groups. Never
 publish an incomplete group or silently substitute a different audio file.
@@ -38,7 +47,7 @@ the YODAS news comparison and its synthetic timbre reference.
 
 Use `_data/speech_tokenizer.json` as the single group manifest. Each audio entry
 must specify `src`, `label`, `duration`, `sampleRate`, `channels`, and `sha256`.
-Store the three files at `assets/audio/speech_tokenizer/<group-id>/<role>.wav`.
+Store each comparison's files at `assets/audio/speech_tokenizer/<group-id>/<role>.wav`.
 Preserve the complete original WAV bytes when importing; do not normalize,
 resample, trim, or transcode an audio comparison without an explicit request.
 
