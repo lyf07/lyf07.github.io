@@ -555,6 +555,57 @@
         "情绪名称来自原始录音文件名，用于标识输入；合成中的情绪表现请通过试听比较。",
         "Aratako/MioCodec-25Hz-44.1kHz-v2：源音频提供 speech tokens，音色参考提供 global embedding（声音及声学条件），通过内置解码器生成 44.1 kHz 音频。"
       ]
+    },
+    {
+      "id": "comparison01-reversed-cosyvoice3",
+      "title": "对比 01 反向：新闻播报音色 × 愤怒男声 speech tokens",
+      "description": "交换原对比 01 的两段音频：新闻播报提供声音参考，合成愤怒成年男声提供 speech tokens，仅测试 CosyVoice 3。",
+      "method": "CosyVoice 3",
+      "tags": ["对比 01 反向", "新闻播报", "合成愤怒男声"],
+      "audio": {
+        "timbre": {
+          "src": "assets/audio/speech_tokenizer/comparison01-reversed-cosyvoice3/timbre.wav",
+          "duration": 30.0,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "10f0bf7768a17fad68e4c0371560febd9a0494d54c786e8b9771d84135ec3050",
+          "label": "原始新闻播报 · 原对比 01 的 speech token来源",
+          "dataset": "YODAS",
+          "datasetLabel": "数据集来源",
+          "datasetNote": "本组用于提取声音条件"
+        },
+        "content": {
+          "src": "assets/audio/speech_tokenizer/comparison01-reversed-cosyvoice3/content.wav",
+          "duration": 22.72,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "87db7c052b4eb9ea36200f2d707806a7d8e6f8141783dbd65cb1e68f78c16e3e",
+          "label": "合成愤怒成年男声 · 原对比 01 的音色参考",
+          "dataset": "合成语音",
+          "datasetLabel": "音频来源",
+          "datasetNote": "本组用于提取 speech tokens"
+        },
+        "synthesis": {
+          "src": "assets/audio/speech_tokenizer/comparison01-reversed-cosyvoice3/synthesis.wav",
+          "duration": 22.72,
+          "sampleRate": 24000,
+          "channels": 1,
+          "sha256": "b966fb9cb6912f1c7cb638d8091761d1fc5bc4f2e9de2fb9dcdcf5a68aca5215",
+          "label": "CosyVoice 3 · 新闻声音条件 + 愤怒男声 speech tokens",
+          "dataset": "YODAS / 合成语音",
+          "datasetLabel": "数据来源",
+          "datasetNote": "CosyVoice 3 反向音频合成结果"
+        }
+      },
+      "transcripts": {
+        "timbre": "Welcome to All Hands Update. I'm Petty Officer Ashley Hedrick with your headlines from Around the Fleet. Sailors aboard USS Jason Dunham recently took part in a two-week sleep study. The goal is to find the best watch rotation to optimize the amount of sleep sailors are getting so that they can be alert on watch. The Navy will use the results to provide guidance to commanding officers around the fleet. We wanted to finish out 2012 by taking a moment to recognize the people behind the scenes that make All Hands Update possible.",
+        "content": "Are you kidding me? It’s two in the morning, and you’re still blasting music! I’ve asked you three times to turn it down. Three times! I have to be up in four hours, and I haven’t slept at all. And don’t tell me to calm down. I was calm the first time I asked! This is my apartment too, and I shouldn’t have to beg for some peace and quiet. Turn the music off and tell your friends to go home. I’m done asking."
+      },
+      "notes": [
+        "与原对比 01 使用完全相同的两段 WAV，音色参考与 speech token来源的角色相互交换。",
+        "Fun-CosyVoice3-0.5B-2512：新闻参考提供 speaker embedding、prompt tokens 与声学特征；愤怒男声提供 speech_tokenizer_v3 tokens，使用官方 voice conversion 直接解码。",
+        "愤怒男声本身为合成语音；本组未使用 ASR、文本 TTS 或语言模型生成中间内容，也不据此声称音色与情绪完全分离。"
+      ]
     }
   ],
   "reconstructions": [
