@@ -11,6 +11,7 @@ on:
       - main
     paths:
       - "speech_pretrain/**"
+      - ".github/workflows/deploy-speech-pretrain.yml"
   workflow_dispatch:
 
 permissions:
@@ -25,10 +26,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # A plain checkout: sparse-checkout leaves a partial clone, and the deploy
+      # action's fetch of gh-pages then fails with "pack has unresolved deltas".
       - name: Checkout 🛎️
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: speech_pretrain
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
