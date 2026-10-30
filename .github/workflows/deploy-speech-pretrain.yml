@@ -1,0 +1,36 @@
+name: Deploy speech_pretrain
+
+# speech_pretrain/ holds self-contained HTML pages that Jekyll copies unchanged,
+# so sync the folder straight to gh-pages instead of rebuilding the whole site.
+# This workflow is the only one that writes speech_pretrain/ on gh-pages:
+# deploy.yml skips pushes that only touch it and leaves it out of its sync.
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - "speech_pretrain/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Run one at a time so an older sync never lands after a newer one.
+concurrency:
+  group: deploy-speech-pretrain
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: speech_pretrain
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: speech_pretrain
+          target-folder: speech_pretrain
