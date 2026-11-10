@@ -6,8 +6,7 @@ title: blank # the website title (if blank, full name will be used instead)
 first_name: Yifeng
 middle_name:
 last_name: Liu
-contact_note: >
-  Email is the best way to reach me.
+contact_note:
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Yifeng Liu is a Ph.D. student in Computer Science at the University of California, Santa Barbara, working on large language models.
 footer_text: >

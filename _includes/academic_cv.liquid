@@ -19,6 +19,7 @@
   {% include selected_papers.liquid %}
 </section>
 
+{% unless include.show_awards == false %}
 <section class="mt-4" aria-labelledby="awards-and-scholarships">
   <h2 id="awards-and-scholarships">Awards and Scholarships</h2>
   <ul>
@@ -44,3 +45,4 @@
     </li>
   </ul>
 </section>
+{% endunless %}

@@ -2,7 +2,6 @@
 layout: about
 title: about
 permalink: /
-subtitle: Ph.D. Student in Computer Science · University of California, Santa Barbara
 
 selected_papers: false # publications are included with the CV content below
 social: true # includes social icons at the bottom of the page
@@ -20,4 +19,4 @@ I received my Bachelor's degree at Nanjing University.
 
 My email is: [yifengliu@ucsb.edu](mailto:yifengliu@ucsb.edu)
 
-{% include academic_cv.liquid show_education=false %}
+{% include academic_cv.liquid show_education=false show_awards=false %}
