@@ -14,7 +14,7 @@ latest_posts:
   enabled: false
 ---
 
-Hi, I'm Yifeng Liu (刘奕风), a first year CS Ph.D student at UCSB, advised by [Shiyu Chang](https://code-terminator.github.io/) and [Dr. Yang Zhang](https://mitibm.mit.edu/people/yang-zhang/) (MIT-IBM Watson AI Lab).
+Hi, I'm Yifeng Liu (刘奕风), a first year CS Ph.D student at UCSB, advised by [Prof. Shiyu Chang](https://code-terminator.github.io/) and [Dr. Yang Zhang](https://mitibm.mit.edu/people/yang-zhang/) (MIT-IBM Watson AI Lab).
 
 I received my Bachelor's degree at Nanjing University.
 
