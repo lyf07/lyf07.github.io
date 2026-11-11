@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>refine 18000 PCAP 预填检测</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: one left-aligned reading column; the table and the prompt transcripts are the only framed objects. */
+  :root {
+    --bg: #F3F5F8;
+    --surface: #FFFFFF;
+    --ink: #17212B;
+    --muted: #586474;
+    --rule: #D3DAE3;
+    --given-bg: #E9EDF2;
+    --model: #0A6A65;
+    --model-bg: #D9F0EC;
+    --good: #18794A;
+    --good-bg: #DDF3E6;
+    --bad: #B03027;
+    --bad-bg: #FBE4E1;
+    --bar-base: #93A0AE;
+    --font-body: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+    --font-display: "Space Grotesk", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+    --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, "PingFang SC", "Microsoft YaHei", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10151B; --surface: #18202A; --ink: #E5EAF0; --muted: #98A5B3; --rule: #2B3643;
+      --given-bg: #232D39; --model: #62D2C7; --model-bg: #113B38;
+      --good: #63CF90; --good-bg: #143524; --bad: #F2918A; --bad-bg: #40201D; --bar-base: #627080;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10151B; --surface: #18202A; --ink: #E5EAF0; --muted: #98A5B3; --rule: #2B3643;
+    --given-bg: #232D39; --model: #62D2C7; --model-bg: #113B38;
+    --good: #63CF90; --good-bg: #143524; --bad: #F2918A; --bad-bg: #40201D; --bar-base: #627080;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    padding-block: 40px 64px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .page { max-width: 780px; margin-inline: auto; display: flex; flex-direction: column; gap: 44px; }
+  section, header { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  p, h1, h2, h3, ul, pre, figure { margin: 0; }
+
+  .eyebrow { font-size: 13px; letter-spacing: 0.06em; color: var(--muted); }
+  h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 5vw, 36px); line-height: 1.2; text-wrap: balance; }
+  h2 { font-family: var(--font-display); font-weight: 600; font-size: 22px; line-height: 1.3; text-wrap: balance; }
+  h3 { font-family: var(--font-display); font-weight: 500; font-size: 17px; line-height: 1.4; }
+  .lead { font-size: 17px; max-width: 40em; }
+  .note { font-size: 14px; color: var(--muted); }
+  code { font-family: var(--font-mono); font-size: 0.9em; overflow-wrap: anywhere; }
+
+  /* results table */
+  .scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+  table { border-collapse: collapse; width: 100%; min-width: 600px; font-variant-numeric: tabular-nums; }
+  th, td { padding: 12px 14px; text-align: right; white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; white-space: normal; }
+  th:nth-child(2), td:nth-child(2) { text-align: left; }
+  thead th { font-size: 13px; font-weight: 500; color: var(--muted); border-bottom: 1px solid var(--rule); }
+  tbody tr + tr td { border-top: 1px solid var(--rule); }
+  td.f1 { font-weight: 600; }
+  tr.pick td.f1 { color: var(--model); }
+
+  /* F1 bars, one scale 0-100 */
+  .bars { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px 12px; align-items: center; font-size: 14px; }
+  .track { height: 12px; background: var(--given-bg); border-radius: 2px; }
+  .fill { height: 100%; border-radius: 2px; background: var(--bar-base); }
+  .fill.pick { background: var(--model); }
+  .bars .val { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .scale { grid-column: 2; display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+
+  dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 16px; font-size: 14px; }
+  dt { color: var(--muted); white-space: nowrap; }
+  dd { margin: 0; }
+
+  /* the clip */
+  .clip { font-size: 19px; line-height: 1.5; }
+  .gold { border-bottom: 3px solid var(--good); font-weight: 600; }
+
+  /* prompt transcripts */
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: var(--muted); }
+  .swatch { display: inline-block; padding: 0 8px; border-radius: 3px; color: var(--ink); font-family: var(--font-mono); font-size: 13px; }
+  .swatch.given { background: var(--given-bg); }
+  .swatch.model { background: var(--model-bg); color: var(--model); }
+  pre.prompt {
+    font-family: var(--font-mono); font-size: 13.5px; line-height: 1.75;
+    white-space: pre-wrap; overflow-wrap: anywhere;
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px;
+  }
+  pre.prompt .given { background: var(--given-bg); border-radius: 2px; }
+  pre.prompt .model { background: var(--model-bg); color: var(--model); border-radius: 2px; font-weight: 500; }
+  pre.prompt .tok { color: var(--muted); }
+  .verdict { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; }
+  .pill { font-size: 13px; font-weight: 600; padding: 1px 10px; border-radius: 999px; }
+  .pill.good { color: var(--good); background: var(--good-bg); }
+  .pill.bad { color: var(--bad); background: var(--bad-bg); }
+
+  ul { padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; max-width: 42em; }
+  .paths { font-family: var(--font-mono); font-size: 12.5px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 16px; }
+</style>
+<style id="case-switcher-style">
+.case-switcher{margin:0 0 1.5rem;padding:1rem;border:1px solid #dfe6dc;background:#fff;border-radius:12px}
+.case-switcher-label{display:block;margin-bottom:.65rem;color:#526456;font-size:.875rem;font-weight:650}
+.case-switcher-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+.case-switcher a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;box-sizing:border-box;padding:.55rem 1rem;border:1px solid #b6c9b9;border-radius:9px;background:#f3f5f1;color:#315e44;font-weight:650;text-decoration:none;line-height:1.5;text-align:center;overflow-wrap:anywhere}
+.case-switcher a:hover{background:#e5ece3}
+.case-switcher a[aria-current="page"]{background:#315e44;color:#fff;border-color:#315e44}
+.case-switcher a:focus-visible{outline:3px solid #a56a1a;outline-offset:3px}
+@media(max-width:1100px){.case-switcher-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.case-switcher-links{grid-template-columns:1fr}.case-switcher a{width:100%}}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .case-switcher{background:var(--surface);border-color:var(--rule)}:root:not([data-theme="light"]) .case-switcher-label{color:var(--muted)}:root:not([data-theme="light"]) .case-switcher a{background:var(--given-bg);border-color:var(--rule);color:var(--ink)}:root:not([data-theme="light"]) .case-switcher a[aria-current="page"]{background:var(--model);border-color:var(--model);color:var(--bg)}}
+:root[data-theme="dark"] .case-switcher{background:var(--surface);border-color:var(--rule)}:root[data-theme="dark"] .case-switcher-label{color:var(--muted)}:root[data-theme="dark"] .case-switcher a{background:var(--given-bg);border-color:var(--rule);color:var(--ink)}:root[data-theme="dark"] .case-switcher a[aria-current="page"]{background:var(--model);border-color:var(--model);color:var(--bg)}
+@media print{.case-switcher{display:none}}
+</style></head><body>
+<div class="page">
+<nav class="case-switcher" aria-label="切换测试情况"><span class="case-switcher-label">切换测试情况</span><div class="case-switcher-links"><a href="./">checkpoint 8000未与instruction合并</a><a href="./instruction-merged-085.html">checkpoint 8000 instruction合并（0.85）--添加了输出限制</a><a href="./instruction-merged-085-noconstraint.html">checkpoint 8000 instruction合并（0.85）--不添加任何输出限制</a><a href="./instruction-merged-085-multiturn-think.html">checkpoint 8000 instruction合并(0.85)--多轮对话--思考</a><a href="./instruction-merged-085-multiturn-nonthink.html">checkpoint 8000 instruction合并(0.85)--多轮对话--不思考</a><a href="./instruction-merged-11-multiturn-nonthink.html">checkpoint 8000 instruction合并（1.1）-- 多轮对话（不思考）</a><a href="./instruction-merged-11-emphassess.html">checkpoint 8000 instruction合并（1.1）-- EmphAssess 重读评测</a><a href="./unmerged-quote.html">checkpoint 8000未合并--quote方法测试</a><a href="./unmerged-training-data.html">checkpoint 8000未合并--训练数据text直接合成</a><a href="./speaker_checkpoint22010_quote.html">speaker_checkpoint22010_quote</a><a href="./speaker_checkpoint22010_training_data.html">speaker_checkpoint22010_training_data</a><a href="./speaker_checkpoint22010_shai_dialog.html">spkname128 checkpoint 22010 未合并 shai dialog</a><a href="./speaker_checkpoint22010_instruction_merged_10_multiturn_nonthink.html">spkname128 checkpoint 22010 instruction合并（1.0）-- 多轮对话（不思考）</a><a href="./librilight_checkpoint22000_training_data_shai_dialog.html">LibriLight-CV3 checkpoint 22000 未合并 训练数据 + shai dialog</a><a href="./yodas_prosody_cap-checkpoint10000-instruct085-56a057f3-9821-43a7-8d9d-2083243813ef.html">yodas_prosody_cap checkpoint 10000 instruction合并（0.85）-- 多轮对话</a><a href="./speechcombine-official-instruct085-a2a96eff-1c2b-4d33-8c53-7cfe593a91ca.html">SpeechCombine 官方模型 instruction合并（0.85）-- 多轮对话</a><a href="./yodas_cosyvoice_chatml-checkpoint10000-instruct10-multiturn.html">yodas_cosyvoice_chatml checkpoint 10000 instruction合并（1.0）-- 多轮对话</a><a href="./speechcombine-refine-longturn-checkpoint21000-instruct10-multiturn.html">SpeechCombine refine_longturn checkpoint 21000 instruction合并（1.0）-- 多轮对话</a><a href="./refine-checkpoint18000-instruct10-pcap-prefill-vs-qa.html" aria-current="page">refine checkpoint 18000 instruction合并（1.0）-- EmphAssess PCAP 预填 vs 问答</a></div></nav>
+
+  <header>
+    <p class="eyebrow">EmphAssess 重音检测 · 913 条 · 2026-11-10</p>
+    <h1>refine checkpoint18000 Instruction 合并（1.0）</h1>
+    <p class="lead">同一份权重，两种问法。问答格式下模型大多答错；把 <code>&lt;PCAP&gt;</code> 接在音频后面并预填半句话，让它自己写出重读的词，F1 从 22 升到 79。</p>
+  </header>
+
+  <section>
+    <h2>结果</h2>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>方式</th><th>system</th><th>P</th><th>R</th><th>F1</th><th>副口径 F1</th><th>无答案</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>基线：问答格式</td><td>带</td><td>19.70</td><td>24.92</td><td class="f1">22.01</td><td>26.34</td><td>10</td></tr>
+          <tr class="pick"><td>预填：直接取引号里的词</td><td>带</td><td>79.29</td><td>79.37</td><td class="f1">79.33</td><td>86.42</td><td>0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bars" role="img" aria-label="F1：基线 22.01，预填 79.33，标尺 0 到 100">
+      <span>基线</span><div class="track"><div class="fill" style="width:22.01%"></div></div><span class="val">22.01</span>
+      <span>预填</span><div class="track"><div class="fill pick" style="width:79.33%"></div></div><span class="val">79.33</span>
+      <div class="scale"><span>0</span><span>F1</span><span>100</span></div>
+    </div>
+
+    <dl>
+      <dt>P / R / F1</dt><dd>micro，913 条全部计入，原版 SpeechCombine 打分器（区分大小写）。</dd>
+      <dt>副口径</dt><dd>预测和标准答案都转小写，数字和英文数词互认（"3" 算作 "three"）。</dd>
+      <dt>无答案</dt><dd>没解析出任何词的条数。</dd>
+      <dt>system</dt><dd>两行最前面都带同一段 system 提示。</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>一条音频的例子</h2>
+    <p class="clip">And so <span class="gold">we</span> went straight into, like, feeding baby lambs.</p>
+    <p class="note">标准答案：重读 <strong>we</strong>。下面的 <code>&lt;音频&gt;</code> 代表这条语音的一串 CV3 音频 code。</p>
+
+    <h3>预填</h3>
+    <div class="legend">
+      <span><span class="swatch given">灰底</span> 给模型的输入，到最后那个引号为止</span>
+      <span><span class="swatch model">绿底</span> 模型接着写的</span>
+    </div>
+<pre class="prompt"><span class="given"><span class="tok">&lt;|im_start|&gt;</span>system
+You are a helpful assistant.
+    Always follow the user's instructions precisely and respond with what is required.
+    Please read the instructions carefully before answering.
+    Your responses must strictly align with the user's intent and constraints.
+    <span class="tok">&lt;|im_end|&gt;</span>
+<span class="tok">&lt;|im_start|&gt;</span>user
+And so we went straight into, like, feeding baby lambs.<span class="tok">[SEP_1]</span>&lt;音频&gt;<span class="tok">[SEP_2]&lt;|im_end|&gt;</span>
+<span class="tok">&lt;PCAP&gt;</span>Based on the audio prosody, the speaker stresses the word "</span><span class="model">we" and speaks with a high level of energy, making the delivery sound excited and lively.&lt;/PCAP&gt;</span></pre>
+    <p class="verdict"><span>取引号里的词当答案：<strong>we</strong></span><span class="pill good">对</span></p>
+    <p class="note">这一行没有问句，也没有 assistant 回答那一步，答案直接从 <code>&lt;PCAP&gt;</code> 里读。</p>
+
+    <h3>基线：问答格式</h3>
+<pre class="prompt"><span class="given"><span class="tok">&lt;|im_start|&gt;</span>system
+（同一段 system 提示）<span class="tok">&lt;|im_end|&gt;</span>
+<span class="tok">&lt;|im_start|&gt;</span>user
+Answer the question from the user. Put your answer in the format "Emphasized word(s): "___" ". Do not repeat your answer. Audio and prosody: And so we went straight into, like, feeding baby lambs.<span class="tok">[SEP_1]</span>&lt;音频&gt;<span class="tok">[SEP_2]</span> Which word(s) in the audio clip are emphasized?<span class="tok">&lt;|im_end|&gt;</span>
+<span class="tok">&lt;|im_start|&gt;</span>assistant
+</span><span class="model">Emphasized word(s): feeding</span></pre>
+    <p class="verdict"><span>回答：<strong>feeding</strong></span><span class="pill bad">错</span></p>
+    <p class="note">回答之后模型还接着生成了一段语音，检测只对文字部分打分。</p>
+  </section>
+
+  <section>
+    <h2>看这个结果要注意</h2>
+    <ul>
+      <li>预填是强制规则，评测方式和标准问答不同，这个分数不能和其他模型的问答 detection 分数直接比。</li>
+      <li>只测了 checkpoint18000 一个点、一种预填措辞，解码用贪心。</li>
+      <li>预填这一行没有做换音频对照。之前的排序探针里，把音频换成重音在另一个词的版本后，模型有 76% 跟着音频改答案。</li>
+    </ul>
+  </section>
+
+  <div class="paths">结果目录
+/proj/spans/lyf/tokenizer_comparison/refine_yodas_librilight_r64_checkpoint18000_instruct100_emphassess_detection_pcapelicit_20261110T195549Z/RESULTS.md
+预填的逐条输入输出
+/proj/spans/lyf/tokenizer_comparison/refine_yodas_librilight_r64_checkpoint18000_instruct100_emphassess_detection_pcapelicit_20261110T195549Z/full.prefill_sys.stage1_prompt_response.jsonl
+基线
+/proj/spans/lyf/tokenizer_comparison/refine_yodas_librilight_r64_checkpoint18000_instruct100_emphassess_detection_free_20261109T121253Z/emph_detection_prompt_response.jsonl</div>
+
+</div>
+</body></html>
